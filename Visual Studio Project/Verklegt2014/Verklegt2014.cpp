@@ -1,15 +1,12 @@
 // Verklegt2014.cpp : Defines the entry point for the console application.
 //
 #include <iostream>
-#include "List.h"
-#include "DateTime.h"
-
-using std::cout;
-using std::cin;
-using std::endl;
+#include "ConsoleUI.h"
 
 int main(int argc, char *argv[])
 {
+	ConsoleUI cui = ConsoleUI();
+	cui.mainMenu();
 	return 0;
 }
 

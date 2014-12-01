@@ -1,6 +1,8 @@
 #pragma once
 #include "Node.h"
 
+// Definition in header file because of template
+
 template <class T>
 class List
 {
@@ -79,6 +81,19 @@ public:
 		}
 		if(n) return n->data;
 		return T();
+	}
+
+	int indexOf(T d)
+	{
+		int j = 0;
+		Node<T>* n = head;
+		while(n && n.data != d)
+		{
+			n = n->next;
+			j++;
+		}
+		if(n) return j;
+		return -1;
 	}
 private:
 	Node<T>* head;

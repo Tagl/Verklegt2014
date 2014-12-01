@@ -4,6 +4,8 @@
 #define NULL 0
 #endif
 
+// Definition in header file because of template
+
 template <class T>
 class Node
 {

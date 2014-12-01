@@ -81,13 +81,21 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ConsoleUI.cpp" />
     <ClCompile Include="DateTime.cpp" />
+    <ClCompile Include="Person.cpp" />
+    <ClCompile Include="PersonRepository.cpp" />
+    <ClCompile Include="PersonService.cpp" />
     <ClCompile Include="Verklegt2014.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConsoleUI.h" />
     <ClInclude Include="DateTime.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="Person.h" />
+    <ClInclude Include="PersonRepository.h" />
+    <ClInclude Include="PersonService.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
