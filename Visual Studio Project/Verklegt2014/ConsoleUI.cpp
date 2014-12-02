@@ -95,7 +95,7 @@ void ConsoleUI::displayPersons()
 		}
 
 		cout << "Q to quit, O to change sort order, T to change sort type, S to change search query."<<endl;
-
+		
 		cin >> c;
 		if(c == 'o' || c == 'O') serv.setSortOrder((Order)!serv.getSortOrder());
 		else if (c == 't' || c == 'T') sortMenu();

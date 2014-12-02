@@ -172,7 +172,7 @@ std::ostream& operator<<(std::ostream& out, Months month)
 
 std::ostream& operator<<(std::ostream& out, Date date)
 {
-	out << (date._day < 10 ? "0" : "") << date._day << "/" << (date._month < 10 ? "0" : "")  << date._month << "/" << date._year;
+	out << ((date._day < 10 ? "0" : "") + std::to_string(date._day) + "/" + (date._month < 10 ? "0" : "") + std::to_string(date._month) + "/" + std::to_string(date._year));
 	return out;
 }
 
