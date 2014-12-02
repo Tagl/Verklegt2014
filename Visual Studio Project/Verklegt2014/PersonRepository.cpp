@@ -69,7 +69,6 @@ std::vector<Person> PersonRepository::getPeople(const SortTypes st, const Order 
 	{
 	case NOTHING:
 		if(o==DESCENDING) std::reverse(peepz.begin(), peepz.end());
-		break;
 	case FIRSTNAME:
 		if(o == ASCENDING)
 			std::sort(peepz.begin(), peepz.end(), [](const Person& p, const Person& q){ return p.firstname < q.firstname; });
