@@ -110,9 +110,9 @@ bool Date::isValid()
 
 Date::Date(const int y, const int m, const int d)
 {
-    setDay(d);
-    setMonth(m);
     setYear(y);
+    setMonth(m);
+    setDay(d);
 }
 
 Days Date::getDayOfWeek(const int day, const int month, const int year)
