@@ -21,7 +21,7 @@ Person::Person(const std::string firstname, const std::string surname, const Gen
 	this->description = desc;
 }
 	
-std::string Person::getFirstName()
+const std::string Person::getFirstName()
 {
 	return firstname;
 }
@@ -30,7 +30,7 @@ void Person::setFirstName(const std::string value)
 	firstname = value == "" ? "Anonymous" : value;
 }
 
-std::string Person::getSurname()
+const std::string Person::getSurname()
 {
 	return surname;
 }
@@ -39,7 +39,7 @@ void Person::setSurname(const std::string value)
 	surname = value;
 }
 
-Gender Person::getGender()
+const Gender Person::getGender()
 {
 	return gender;
 }
@@ -48,7 +48,7 @@ void Person::setGender(const Gender value)
 	gender = value;
 }
 
-Date Person::getDoB()
+const Date Person::getDoB()
 {
 	return dob;
 }
@@ -57,7 +57,7 @@ void Person::setDoB(const Date value)
 	dob = value;
 }
 
-Date Person::getDoD()
+const Date Person::getDoD()
 {
 	return dod;
 }
@@ -66,7 +66,7 @@ void Person::setDoD(const Date value)
 	dod = value;
 }
 	
-std::string Person::getDescription()
+const std::string Person::getDescription()
 {
 	return description;
 }
@@ -75,12 +75,12 @@ void Person::setDescription(const std::string value)
 	description = value;
 }
 
-std::istream& operator>>(std::istream& in, Gender g)
+std::istream& operator>>(std::istream& in, Gender& g)
 {
 	std::string s;
 	in >> s;
-	if(s == "M" || s == "m") g = MALE;
-	else if(s=="F" || s == "f") g = FEMALE;
+	if(s == "M" || s == "m" || s == "Male") g = MALE;
+	else if(s=="F" || s == "f" || s == "Female") g = FEMALE;
 	else g = UNSPECIFIED;
 
 	return in;
@@ -93,4 +93,16 @@ std::ostream& operator<<(std::ostream& out, Gender g)
 	else out << "Unspecified";
 
 	return out;
+}
+
+std::ostream& operator<<(std::ostream& out, Person p)
+{
+	out << p.firstname << " " << p.surname << " " << p.gender << " " << p.dob << " " << p.dod << " \"" << p.description << "\"";
+	return out;
+}
+
+std::istream& operator>>(std::istream& in, Person& p)
+{
+	in >> p.firstname >> p.surname >> p.gender >> p.dob >> p.dod >> p.description;
+	return in;
 }

@@ -110,9 +110,9 @@ bool Date::isValid()
 
 Date::Date(const int y, const int m, const int d)
 {
-    _year = y;
-    _month = m;
-    _day = d;
+    setDay(d);
+    setMonth(m);
+    setYear(y);
 }
 
 Days Date::getDayOfWeek(const int day, const int month, const int year)
@@ -121,8 +121,8 @@ Days Date::getDayOfWeek(const int day, const int month, const int year)
 	return (Days)(w%7);
 }
 
-const std::string Date::dayNames[7] = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
-const std::string Date::monthNames[12] = {"January","February","March","April","May","July","June","August","September","October","November","December"};
+const std::string Date::dayNames[] = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+const std::string Date::monthNames[] = {"January","February","March","April","May","July","June","August","September","October","November","December"};
 
 
 bool operator<(const Date a, const Date b)
@@ -172,7 +172,7 @@ std::ostream& operator<<(std::ostream& out, Months month)
 
 std::ostream& operator<<(std::ostream& out, Date date)
 {
-	out << std::setfill('0') << std::setw(2) << date._day << "/" << std::setfill('0') << std::setw(2)  << date._month << "/" << date._year;
+	out << (date._day < 10 ? "0" : "") << date._day << "/" << (date._month < 10 ? "0" : "")  << date._month << "/" << date._year;
 	return out;
 }
 
@@ -180,7 +180,20 @@ std::istream& operator>>(std::istream& in, Date& date)
 {
 	std::string s;
 	in >> s;
-	date._day = stoi(s.substr(0, 2));
-	date._month = stoi(s.substr(3, 2));
-	date._year = stoi(s.substr(6, s.length()-6));
+	int i = s.find('/');
+	if(i == -1) date = Date();
+	else
+	{
+		int k = stoi(s.substr(0, i));
+		int j = s.find('/', i+1);
+		if(j == -1) date = Date();
+		else
+		{
+			date.setMonth(stoi(s.substr(i+1, j-i-1)));
+			date.setYear(stoi(s.substr(j+1, s.length()-j-1)));
+			date.setDay(k);
+		}
+	}
+
+	return in;
 }

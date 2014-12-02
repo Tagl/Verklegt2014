@@ -82,7 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleUI.cpp" />
-    <ClCompile Include="DateTime.cpp" />
+    <ClCompile Include="Date.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="PersonRepository.cpp" />
     <ClCompile Include="PersonService.cpp" />
@@ -90,7 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleUI.h" />
-    <ClInclude Include="DateTime.h" />
+    <ClInclude Include="Date.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Person.h" />

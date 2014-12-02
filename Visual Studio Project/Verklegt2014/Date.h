@@ -32,8 +32,8 @@ enum Days
 class Date
 {
 private:
-	static const std::string dayNames[7];
-	static const std::string monthNames[12];
+	static const std::string dayNames[];
+	static const std::string monthNames[];
 
 
     int _day;
