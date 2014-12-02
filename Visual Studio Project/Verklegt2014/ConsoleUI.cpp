@@ -1,7 +1,5 @@
 #include <iomanip>
 #include "ConsoleUI.h"
-#include "Person.h"
-#include "PersonService.h"
 
 using std::cout;
 using std::cin;
@@ -65,11 +63,18 @@ void ConsoleUI::addPerson()
 	}
 	while(true)
 	{
+<<<<<<< HEAD
 		cout << "Date of death (DD/MM/YYYY): ";
 		cin >> dod;
 		if(dod.isValid() && dod > dob) break;
+=======
+		cout << "Date of death (1/1/0 for alive): ";
+		if(cin >> dod);
+		if(dod == ALIVE || (dod.isValid() && dod > dob)) break;
+>>>>>>> parent of 30caa19... Revert "Allowed people to be alive"
 		else cout << "Invalid input!" << endl;
 	}
+	cin.ignore(1, '\n');
 	cout << "Description: ";
 	std::getline(cin, desc);
 
@@ -82,7 +87,7 @@ void ConsoleUI::displayPersons()
 	do
 	{
 		std::vector<Person> people = serv.getPeople();
-		cout << "You are sorting by " << serv.getSortType() << " in " << serv.getSortOrder() << " order " << (serv.getQuery() != "" ? " and searching for \"" + serv.getQuery() + "\"" : "") << endl;
+		cout << "You are sorting by " << serv.getSortType() << " in " << serv.getSortOrder() << " order" << (serv.getQuery() != "" ? " and searching for \"" + serv.getQuery() + "\"" : "") << endl;
 		for (size_t i = 0; i < people.size(); i++)
 		{
 			Person p = people.at(i);
@@ -90,7 +95,8 @@ void ConsoleUI::displayPersons()
 			cout << std::setw(NAMEWIDTH) << p.surname;
 			cout << std::setw(GENDERWIDTH) << p.gender;
 			cout << std::setw(DATEWIDTH) << p.dob;
-			cout << std::setw(DATEWIDTH) << p.dod;
+			if(p.dod == ALIVE) cout << std::setw(DATEWIDTH) << "Alive";
+			else cout << std::setw(DATEWIDTH) << p.dod;
 			cout << std::setw(DESCWIDTH) << (p.description.length() > DESCWIDTH-5 ? p.description.substr(0,DESCWIDTH-5) + "..." : p.description) << endl;
 		}
 
@@ -143,7 +149,8 @@ void ConsoleUI::sortMenu()
 void ConsoleUI::searchMenu()
 {
 	std::string s;
+	cin.ignore(1,'\n');
 	cout << "Input your search: ";
-	cin >> s;
+	std::getline(cin, s);
 	serv.setQuery(s);
 }
