@@ -91,8 +91,6 @@
   <ItemGroup>
     <ClInclude Include="ConsoleUI.h" />
     <ClInclude Include="Date.h" />
-    <ClInclude Include="List.h" />
-    <ClInclude Include="Node.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="PersonRepository.h" />
     <ClInclude Include="PersonService.h" />

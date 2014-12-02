@@ -10,7 +10,7 @@ PersonRepository::PersonRepository()
 bool PersonRepository::load(const std::string file)
 {
 	std::ifstream in;
-	in.open(file);
+	in.open(file, std::ios_base::in);
 	if(in.is_open())
 	{
 		people.clear();
@@ -29,7 +29,7 @@ bool PersonRepository::load(const std::string file)
 bool PersonRepository::save(const std::string file)
 {
 	std::ofstream out;
-	out.open(file);
+	out.open(file, std::ios_base::out);
 	if(out.is_open())
 	{
 		for (size_t i = 0; i < people.size(); i++)
@@ -60,10 +60,10 @@ std::vector<Person> PersonRepository::search(const std::string sq)
 
 std::vector<Person> PersonRepository::getPeople(const SortTypes st, const Order o, std::string sq)
 {
-	std::vector<Person> peepz;
+	std::vector<Person> peepz; // the vector to return
 
-	if(sq != "") peepz = search(sq);
-	else peepz = std::vector<Person>(people);
+	if(sq != "") peepz = search(sq); // if there is a search query then we search
+	else peepz = std::vector<Person>(people); // otherwise get all the people
 	
 	switch (st)
 	{

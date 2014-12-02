@@ -103,6 +103,7 @@ std::ostream& operator<<(std::ostream& out, Person p)
 
 std::istream& operator>>(std::istream& in, Person& p)
 {
-	in >> p.firstname >> p.surname >> p.gender >> p.dob >> p.dod >> p.description;
+	in >> p.firstname >> p.surname >> p.gender >> p.dob >> p.dod;
+	std::getline(in,p.description);
 	return in;
 }

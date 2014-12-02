@@ -71,7 +71,7 @@ void ConsoleUI::addPerson()
 		else cout << "Invalid input!" << endl;
 	}
 	cout << "Description: ";
-	cin >> desc;
+	std::getline(cin, desc);
 
 	serv.add(Person(firstname, surname, gender, dob, dod, desc));
 }

@@ -6,7 +6,7 @@
 class ConsoleUI
 {
 private:
-	static const int NAMEWIDTH = 12, DATEWIDTH = 12, GENDERWIDTH = 8, DESCWIDTH = 22;
+	static const int NAMEWIDTH = 15, DATEWIDTH = 12, GENDERWIDTH = 8, DESCWIDTH = 22;
 
 	PersonService serv;
 
