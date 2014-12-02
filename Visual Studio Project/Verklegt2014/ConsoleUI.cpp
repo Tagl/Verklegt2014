@@ -63,15 +63,10 @@ void ConsoleUI::addPerson()
 	}
 	while(true)
 	{
-<<<<<<< HEAD
+		cout << "If person is still alive enter 1/1/0" << endl;
 		cout << "Date of death (DD/MM/YYYY): ";
 		cin >> dod;
-		if(dod.isValid() && dod > dob) break;
-=======
-		cout << "Date of death (1/1/0 for alive): ";
-		if(cin >> dod);
 		if(dod == ALIVE || (dod.isValid() && dod > dob)) break;
->>>>>>> parent of 30caa19... Revert "Allowed people to be alive"
 		else cout << "Invalid input!" << endl;
 	}
 	cin.ignore(1, '\n');
