@@ -58,14 +58,14 @@ void ConsoleUI::addPerson()
 	}
 	while(true)
 	{
-		cout << "Date of birth: ";
+		cout << "Date of birth (DD/MM/YYYY): ";
 		cin >> dob;
 		if(dob.isValid()) break;
 		else cout << "Invalid input!" << endl;
 	}
 	while(true)
 	{
-		cout << "Date of death: ";
+		cout << "Date of death (DD/MM/YYYY): ";
 		cin >> dod;
 		if(dod.isValid() && dod > dob) break;
 		else cout << "Invalid input!" << endl;
