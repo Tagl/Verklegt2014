@@ -31,6 +31,8 @@ void ConsoleUI::mainMenu()
 		case 4:
 			loadMenu();
 			break;
+		case 5:
+			break;
 		default:
 			cout << "Invalid input! Please try again." << endl;
 			break;
