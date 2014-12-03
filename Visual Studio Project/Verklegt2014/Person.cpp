@@ -97,7 +97,7 @@ std::ostream& operator<<(std::ostream& out, Gender g)
 
 std::ostream& operator<<(std::ostream& out, Person p)
 {
-	out << p.firstname << " " << p.surname << " " << p.gender << " " << p.dob << " " << p.dod << " \"" << p.description << "\"";
+	out << p.firstname << " " << p.surname << " " << p.gender << " " << p.dob << " " << p.dod << " " << p.description;
 	return out;
 }
 
