@@ -4,6 +4,8 @@
 #include <fstream>
 #include "Date.h"
 
+std::istream& operator>>(std::istream& in, Gender& g);
+std::ostream& operator<<(std::ostream& out, Gender g);
 
 enum Gender { UNSPECIFIED, MALE, FEMALE };
 
@@ -35,9 +37,6 @@ public:
 	
 	const std::string getDescription();
 	void setDescription(const std::string value);
-
-	friend std::istream& operator>>(std::istream& in, Gender& g);
-	friend std::ostream& operator<<(std::ostream& out, Gender g);
 
 	friend std::ostream& operator<<(std::ostream& out, Person p);
 	friend std::istream& operator>>(std::istream& out, Person& p);
