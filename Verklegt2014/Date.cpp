@@ -8,7 +8,7 @@ int Date::getDay()
 }
 void Date::setDay(int value)
 {
-    _day = (value >= 1 && value <= DaysInMonth()) ? value : -1;
+    _day = value;
 }
 	
 // Month get and set
@@ -18,7 +18,7 @@ int Date::getMonth()
 }
 void Date::setMonth(int value)
 {
-    _month = ((value >= 1 && value <= 12) ? value : -1);
+    _month = value;
 }
 	
 // Year get and set
@@ -40,28 +40,11 @@ bool Date::isLeapYear()
 }
 
 // helper function for boundary checks
+// http://cmcenroe.me/2014/12/05/days-in-month-formula.html
 int Date::DaysInMonth()
 {
-    switch (_month)
-    {
-        case 2:
-            return isLeapYear() ? 29 : 28;
-        case 4:
-        case 6:
-        case 9:
-        case 11:
-            return 30;
-        case 1:
-        case 3:
-        case 5:
-        case 7:
-        case 8:
-        case 10:
-        case 12:
-            return 31;
-        default:
-            return -1;
-    }
+    int x = _month;
+    return 28 + (x + x/8) % 2 + 2 % x + 2 * (1/x) + (_month == 2 ? isLeapYear() : 0);
 }
 
 Days Date::getDayOfWeek()
@@ -105,7 +88,8 @@ Date Date::Tomorrow()
 
 bool Date::isValid()
 {
-	return !(_month == -1 || _day == -1);
+    if(_day < 1 || _day > DaysInMonth() || _month < 1 || _month > 12) return false;
+    return true;
 }
 
 Date::Date(const int y, const int m, const int d)
