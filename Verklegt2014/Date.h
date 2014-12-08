@@ -67,6 +67,7 @@ public:
 
     Date(const int y = 0, const int m = 0, const int d = 0);
 
+    static Date fromString(const QString s);
     static Days getDayOfWeek(const int day, const int month, const int year);
 
 

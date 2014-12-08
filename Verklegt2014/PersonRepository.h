@@ -1,4 +1,5 @@
 #pragma once
+#include <QtSql>
 #include <vector>
 #include "Person.h"
 
@@ -10,7 +11,7 @@ enum Order { ASCENDING = 0, DESCENDING };
 class PersonRepository
 {
 private:
-    //QSqlDatabase db;
+    QSqlDatabase db;
 	std::vector<Person> people;
 	std::vector<Person> search(const std::string sq);
 public:

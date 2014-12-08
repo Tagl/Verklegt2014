@@ -105,6 +105,27 @@ Days Date::getDayOfWeek(const int day, const int month, const int year)
 	return (Days)(w%7);
 }
 
+Date Date::fromString(const QString s)
+{
+    Date d;
+    int i = s.indexOf('/');
+    if(i == -1) d = Date();
+    else
+    {
+        int k = s.mid(0,i).toInt();
+        int j = s.indexOf('/', i+1);
+        if(j == -1) d = Date();
+        else
+        {
+            d.setMonth(s.mid(i+1, j-i-1).toInt());
+            d.setYear(s.mid(j+1, s.length()-j-1).toInt());
+            d.setDay(k);
+        }
+    }
+
+    return d;
+}
+
 const std::string Date::dayNames[] = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
 const std::string Date::monthNames[] = {"January","February","March","April","May","July","June","August","September","October","November","December"};
 
@@ -164,20 +185,8 @@ std::istream& operator>>(std::istream& in, Date& date)
 {
 	std::string s;
 	in >> s;
-	int i = s.find('/');
-	if(i == -1) date = Date();
-	else
-	{
-        int k = atoi(s.substr(0, i).c_str());
-		int j = s.find('/', i+1);
-		if(j == -1) date = Date();
-        else
-		{
-            date.setMonth(atoi(s.substr(i+1, j-i-1).c_str()));
-            date.setYear(atoi(s.substr(j+1, s.length()-j-1).c_str()));
-			date.setDay(k);
-		}
-	}
+    QString qs = QString::fromStdString(s);
+    date = Date::fromString(qs);
 
 	return in;
 }

@@ -9,10 +9,18 @@ PersonRepository::PersonRepository()
 
 bool PersonRepository::load()
 {
-    //db = QSqlDatabase::addDatabase("QSQLITE");
-    //db.setDatabaseName("data.sqlite");
-    //return db.open();
-    return false;
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("data.sqlite");
+    bool o = db.open();
+    if(db.isOpen())
+    {
+        QSqlQuery query;
+        query.exec("CREATE TABLE IF NOT EXISTS Computers (ID INT PRIMARY KEY  NOT NULL, Name VARCHAR, BuildingYear INT, WasItBuild VARCHAR, Description TEXT);");
+        query.exec("CREATE TABLE IF NOT EXISTS Persons (ID INT PRIMARY KEY NOT NULL, FirstName VARCHAR, SurName VARCHAR, DoB DATE, DoD DATE, Gender CHAR);");
+        query.exec("CREATE TABLE IF NOT EXISTS Connections(P_ID INT NOT NULL, C_ID INT NOT NULL, PRIMARY KEY (P_ID,C_ID), FOREIGN KEY (C_ID) REFERENCES Computers(ID), FOREIGN KEY (P_ID) REFERENCES Persons(ID));");
+    }
+
+    return o;
 }
 
 bool PersonRepository::save(const std::string file)
@@ -50,20 +58,20 @@ std::vector<Person> PersonRepository::search(const std::string sq)
 std::vector<Person> PersonRepository::getPeople(const SortTypes st, const Order o, std::string sq)
 {
     std::vector<Person> peepz;
-    //QSqlQuery query;
-    //query.exec("SELECT * FROM persons");
+    QSqlQuery query;
+    query.exec("SELECT * FROM persons");
 
-    /*while(query.next())
+    while(query.next())
     {
         Person p = Person();
         p.firstname = query.value("FirstName").toString().toStdString();
         p.surname = query.value("Surname").toString().toStdString();
         p.gender = query.value("Gender").toChar().toLatin1() == 'M' ? MALE : FEMALE;
-        //p.dob = query.value("dob").toDate();
-        //p.dod = query.value("dod").toDate();
+        p.dob = Date::fromString(query.value("dob").toDate().toString("dd/MM/yyyy"));
+        p.dod = Date::fromString(query.value("dod").toDate().toString("dd/MM/yyyy"));
         p.description = query.value("Description").toString().toStdString();
         peepz.push_back(p);
-    }*/
+    }
 
     return peepz;
 }
