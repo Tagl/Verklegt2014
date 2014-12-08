@@ -10,7 +10,7 @@ enum Order { ASCENDING = 0, DESCENDING };
 class PersonRepository
 {
 private:
-
+    //QSqlDatabase db;
 	std::vector<Person> people;
 	std::vector<Person> search(const std::string sq);
 public:
@@ -18,7 +18,7 @@ public:
 
 	PersonRepository();
 
-	bool load(const std::string file);
+    bool load();
 	bool save(const std::string file);
 
 	std::vector<Person> getPeople(const SortTypes st = NOTHING, const Order o = ASCENDING, std::string search = "");
