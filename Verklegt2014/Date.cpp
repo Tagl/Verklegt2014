@@ -156,7 +156,7 @@ std::ostream& operator<<(std::ostream& out, Months month)
 
 std::ostream& operator<<(std::ostream& out, Date date)
 {
-	out << ((date._day < 10 ? "0" : "") + std::to_string(date._day) + "/" + (date._month < 10 ? "0" : "") + std::to_string(date._month) + "/" + std::to_string(date._year));
+    out << (QString(date._day < 10 ? "0" : "") + QString::number(date._day) + QString("/") + QString(date._month < 10 ? "0" : "") + QString::number(date._month) + QString("/") + QString::number(date._year)).toStdString();
 	return out;
 }
 

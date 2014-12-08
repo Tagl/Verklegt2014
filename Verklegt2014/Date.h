@@ -1,4 +1,5 @@
 #pragma once
+#include <Qstring>
 #include <string>
 #include <fstream>
 

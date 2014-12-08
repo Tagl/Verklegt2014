@@ -9,9 +9,9 @@ PersonService::PersonService()
 	searchQuery = "";
 }
 	
-bool PersonService::load(const std::string file)
+bool PersonService::load()
 {
-	return repo.load(file);
+    return repo.load();
 }
 bool PersonService::save(const std::string file)
 {

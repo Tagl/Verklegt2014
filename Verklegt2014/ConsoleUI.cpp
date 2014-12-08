@@ -111,7 +111,7 @@ void ConsoleUI::loadMenu()
 	std::string filename;
 	cout << "Enter filename: ";
 	cin >> filename;
-	if(serv.load(filename)) cout << "File succesfully loaded.";
+    if(serv.load()) cout << "File succesfully loaded.";
 	else cout << "Error! Could not load file.";
 	cout << endl;
 }

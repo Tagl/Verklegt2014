@@ -12,7 +12,7 @@ private:
 public:
 	PersonService();
 	
-	bool load(const std::string file);
+    bool load();
 	bool save(const std::string file);
 
 	void add(const Person p);
