@@ -168,13 +168,13 @@ std::istream& operator>>(std::istream& in, Date& date)
 	if(i == -1) date = Date();
 	else
 	{
-		int k = stoi(s.substr(0, i));
+        int k = atoi(s.substr(0, i).c_str());
 		int j = s.find('/', i+1);
 		if(j == -1) date = Date();
-		else
+        else
 		{
-			date.setMonth(stoi(s.substr(i+1, j-i-1)));
-			date.setYear(stoi(s.substr(j+1, s.length()-j-1)));
+            date.setMonth(atoi(s.substr(i+1, j-i-1).c_str()));
+            date.setYear(atoi(s.substr(j+1, s.length()-j-1).c_str()));
 			date.setDay(k);
 		}
 	}
