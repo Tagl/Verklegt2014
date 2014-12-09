@@ -31,6 +31,7 @@ std::vector<Computer> ComputerRepository::getPeople(const SortTypes st, const Or
 
     return peepz;
     */
+    return std::vector<Computer>();
 }
 
 void ComputerRepository::add(Computer c)
