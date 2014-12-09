@@ -40,26 +40,11 @@ bool PersonRepository::save(const std::string file)
 	else return false;
 }
 
-std::vector<Person> PersonRepository::search(const std::string sq)
-{
-	std::vector<Person> peepz = std::vector<Person>();
-	for (size_t i = 0; i < people.size(); i++)
-	{
-		Person p = people.at(i);
-		if(p.firstname.find(sq) != -1 || p.surname.find(sq) != -1 || p.description.find(sq) != -1)
-		{
-			peepz.push_back(p);
-		}
-	}
-
-	return peepz;
-}
-
 std::vector<Person> PersonRepository::getPeople(const SortTypes st, const Order o, std::string sq)
 {
-    std::vector<Person> peepz;
+    std::vector<Person> peepz = std::vector<Person>();
     QSqlQuery query;
-    query.exec("SELECT * FROM persons");
+    query.exec(QString("SELECT * FROM persons WHERE name LIKE \"%") + QString::fromStdString(sq)  + QString("%\""));
 
     while(query.next())
     {
