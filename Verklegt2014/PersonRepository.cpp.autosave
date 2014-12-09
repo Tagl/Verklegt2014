@@ -42,11 +42,26 @@ bool PersonRepository::save(const std::string file)
 	else return false;
 }
 
+std::vector<Person> PersonRepository::search(const std::string sq)
+{
+	std::vector<Person> peepz = std::vector<Person>();
+	for (size_t i = 0; i < people.size(); i++)
+	{
+		Person p = people.at(i);
+		if(p.firstname.find(sq) != -1 || p.surname.find(sq) != -1 || p.description.find(sq) != -1)
+		{
+			peepz.push_back(p);
+		}
+	}
+
+	return peepz;
+}
+
 std::vector<Person> PersonRepository::getPeople(const SortTypes st, const Order o, std::string sq)
 {
-    std::vector<Person> peepz = std::vector<Person>();
+    std::vector<Person> peepz;
     QSqlQuery query;
-    query.exec(QString("SELECT * FROM persons WHERE name LIKE \"%") + QString::fromStdString(sq)  + QString("%\""));
+    query.exec("SELECT * FROM persons");
 
     while(query.next())
     {
@@ -81,7 +96,7 @@ void PersonRepository::add(Person p)
                   "VALUES(:firstname, :surname, :dob, :dod, :gender, :description)");
     query.bindValue(":firstname", QString::fromStdString(p.firstname));
     query.bindValue(":surname", QString::fromStdString(p.surname));
-    query.bindValue(":dob", Qdate::fromStdString(p._dob));
+    query.bindValue(":dob", QString::fromStdString(p._dob));
     query.bindValue(":dod", QString::fromStdString(p._dod));
     query.bindValue(":gender", QString::fromStdString(p._gender));
     query.bindValue(":description", QString::fromStdString(p.description));
