@@ -9,7 +9,7 @@ using std::endl;
 void ConsoleUI::mainMenu()
 {
 	int choice = 0;
-    while(choice != 4)
+    while(choice != 6)
 	{
         cout << "1. Add a person to the database" << endl;
         cout << "2. Add a computer to the database" << endl;
@@ -98,7 +98,7 @@ void ConsoleUI::displayPersons()
 	do
 	{
 		std::vector<Person> people = serv.getPeople();
-		cout << "You are sorting by " << serv.getSortType() << " in " << serv.getSortOrder() << " order" << (serv.getQuery() != "" ? " and searching for \"" + serv.getQuery() + "\"" : "") << endl;
+        cout << "You are sorting by " << serv.getSortType() << " in " << serv.getSortOrder() << " order" << (serv.getQuery() != "" ? " and searching for \"" + serv.getQuery() + "\"" : "") << endl;
 		for (size_t i = 0; i < people.size(); i++)
 		{
 			Person p = people.at(i);
