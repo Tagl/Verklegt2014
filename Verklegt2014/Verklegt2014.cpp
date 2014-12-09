@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
     Database db;
     ConsoleUI cui = ConsoleUI();
 	cui.mainMenu();
+    db.getDB().close();
 	return 0;
 }
 
