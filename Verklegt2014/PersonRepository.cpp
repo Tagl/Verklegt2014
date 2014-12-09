@@ -14,14 +14,21 @@ std::vector<Person> PersonRepository::getPeople(const SortTypes st, const Order 
     QString search = QString::fromStdString(sq);
     std::vector<Person> peepz = std::vector<Person>();
     QSqlQuery query;
+
+    std::ostringstream str;
+    str << st;
+    QString sts = QString::fromStdString(str.str());
+
     query.exec(QString("SELECT * FROM persons WHERE FirstName LIKE '%") + search
                + QString("%' OR SurName LIKE '%") + search
-               + QString("%' OR Description LIKE '%" + search + "%'"
-                         ));
+               + QString("%' OR Description LIKE '%") + search
+               + QString("%' ORDER BY ") + sts + QString(o==ASCENDING?"ASC":"DESC")
+                         );
 
     while(query.next())
     {
         Person p = Person();
+        p.id = query.value("ID").toInt();
         p.firstname = query.value("FirstName").toString().toStdString();
         p.surname = query.value("SurName").toString().toStdString();
         p.gender = query.value("Gender").toChar().toLatin1() == 'M' ? MALE : FEMALE;
@@ -66,7 +73,7 @@ void PersonRepository::remove(int id)
     query.exec();
 }
 
-const std::string PersonRepository::sortNames[] = {"Nothing", "First name", "Surname", "Gender", "Date of birth", "Date of death"};
+const std::string PersonRepository::sortNames[] = {"ID", "Firstname", "Surname", "Gender", "DoB", "DoD"};
 
 std::ostream& operator<<(std::ostream& out, SortTypes st)
 {
