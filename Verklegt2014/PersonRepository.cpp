@@ -9,7 +9,6 @@ PersonRepository::PersonRepository()
 
 }
 
-<<<<<<< HEAD
 bool PersonRepository::load()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
@@ -25,9 +24,6 @@ bool PersonRepository::load()
 
     return o;
 }
-=======
-
->>>>>>> FETCH_HEAD
 
 std::vector<Person> PersonRepository::getPeople(const SortTypes st, const Order o, std::string sq)
 {
