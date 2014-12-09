@@ -11,24 +11,32 @@ void ConsoleUI::mainMenu()
 	int choice = 0;
     while(choice != 4)
 	{
-		cout << "1. Add person to list" << endl;
-		cout << "2. Display list" << endl;
-        cout << "3. Load list from file" << endl;
-        cout << "4. Exit" << endl;
+        cout << "1. Add a person to the database" << endl;
+        cout << "2. Add a computer to the database" << endl;
+        cout << "3. Display persons" << endl;
+        cout << "4. Display computers" << endl;
+        cout << "5. Connect a person to a computer" <<endl;
+        cout << "6. Exit" << endl;
 		cin >> choice;
 		switch(choice)
 		{
 		case 1:
 			addPerson();
-			break;
+            break;
 		case 2:
-			displayPersons();
+            addComputer();
             break;
         case 3:
-			loadMenu();
+            displayPersons();
 			break;
         case 4:
+            displayComputers();
 			break;
+        case 5;
+            connect();
+            break;
+        case 6;
+            break;
 		default:
 			cout << "Invalid input! Please try again." << endl;
 			break;
@@ -102,15 +110,7 @@ void ConsoleUI::displayPersons()
 	} while(c != 'q' && c != 'Q');
 }
 
-void ConsoleUI::loadMenu()
-{
-	std::string filename;
-	cout << "Enter filename: ";
-	cin >> filename;
-    if(serv.load()) cout << "File succesfully loaded.";
-	else cout << "Error! Could not load file.";
-	cout << endl;
-}
+
 
 
 void ConsoleUI::sortMenu()

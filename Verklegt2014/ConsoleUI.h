@@ -13,10 +13,12 @@ private:
 	PersonService serv;
 
 	void addPerson();
-	void loadMenu();
+    void addComputer();
 	void searchMenu();
 	void sortMenu();
 	void displayPersons();
+    void displayComputers();
+    void connect();
 public:
 	void mainMenu();
 };
