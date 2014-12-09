@@ -22,11 +22,19 @@ SOURCES += \
     Person.cpp \
     PersonRepository.cpp \
     PersonService.cpp \
-    Verklegt2014.cpp
+    Verklegt2014.cpp \
+    ComputerRepository.cpp \
+    ComputerService.cpp \
+    RelationRepository.cpp \
+    RelationService.cpp
 
 HEADERS += \
     ConsoleUI.h \
     Date.h \
     Person.h \
     PersonRepository.h \
-    PersonService.h
+    PersonService.h \
+    ComputerRepository.h \
+    ComputerService.h \
+    RelationRepository.h \
+    RelationService.h
