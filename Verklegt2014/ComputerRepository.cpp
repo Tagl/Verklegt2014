@@ -44,7 +44,7 @@ void ComputerRepository::add(Computer c)
 
     wasMade_ = convertWasMade_.str();
 
-    query.prepare("Insert into persons (Name, ComputerType, YearBuilt, wasMade, Description) VALUES(':name', ':computertype', ':yearbuilt', ':wasmade', ':description')");
+    query.prepare("Insert into computers(Name, ComputerType, YearBuilt, wasMade, Description) VALUES(:name, :computertype, :yearbuilt, :wasmade, :description)");
     query.bindValue(":name", QString::fromStdString(c.name));
     query.bindValue(":computertype", QString::fromStdString(c.computerType));
     query.bindValue(":yearbuilt", c.yearBuilt);
