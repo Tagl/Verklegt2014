@@ -86,6 +86,11 @@ Date Date::Tomorrow()
     return d;
 }
 
+QDate Date::toQDate()
+{
+    return QDate(_year, _month, _day);
+}
+
 bool Date::isValid()
 {
     if(_day < 1 || _day > DaysInMonth() || _month < 1 || _month > 12) return false;

@@ -2,6 +2,7 @@
 
 Person::Person(const Person& value)
 {
+    this->id = value.id;
 	this->firstname = value.firstname;
 	this->surname = value.surname;
 	this->gender = value.gender;

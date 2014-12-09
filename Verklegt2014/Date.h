@@ -1,5 +1,6 @@
 #pragma once
 #include <Qstring>
+#include <QDate>
 #include <string>
 #include <fstream>
 
@@ -62,6 +63,8 @@ public:
     Date Yesterday();
 
     Date Tomorrow();
+
+    QDate toQDate();
 
     bool isValid();
 

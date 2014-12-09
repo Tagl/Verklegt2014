@@ -12,6 +12,7 @@ std::ostream& operator<<(std::ostream& out, Gender g);
 class Person
 {
 public:
+    int id;
 	std::string firstname, surname;
 	Gender gender;
 	Date dob, dod; // Date of Birth, Date of Death
