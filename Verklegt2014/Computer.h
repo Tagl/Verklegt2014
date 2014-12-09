@@ -4,7 +4,7 @@
 #include <fstream>
 #include "Date.h"
 
-enum wasMade {YES, NO, UNSPECIFIED};
+enum WasMade {YES, NO, MAYBE};
 
 std::istream& operator>>(std::istream& in, wasMade& m);
 std::ostream& operator<<(std::ostream& out, wasMade& m);
@@ -14,12 +14,12 @@ class Computer
 public:
     int id;
     std::string name, computerType;
-    wasMade _wasMade;
+    WasMade wasMade;
     int yearBuilt;
     std::string description;
 
     Computer(const Computer& value);
-    Computer(const std::string name = "Anonymous", const std::string computerType = "", const wasMade _wasMade = UNSPECIFIED, const int yearBuilt = 0, const std::string desc = "");
+    Computer(const std::string name = "Anonymous", const std::string computerType = "", const WasMade wasMade = UNSPECIFIED, const int yearBuilt = 0, const std::string desc = "");
 
     const std::string getName();
     void setName(const std::string value);
@@ -27,8 +27,8 @@ public:
     const std::string getComputerType();
     void setComputerType(const std::string value);
 
-    const wasMade getWasMade();
-    void setwasMade(const wasMade value);
+    const WasMade getWasMade();
+    void setwasMade(const WasMade value);
 
     const int getYearBuilt();
     void setyearBuilt(const int value);

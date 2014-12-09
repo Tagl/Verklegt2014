@@ -1,4 +1,5 @@
 #pragma once
+#include "ComputerRepository.h"
 
 class ComputerService
 {

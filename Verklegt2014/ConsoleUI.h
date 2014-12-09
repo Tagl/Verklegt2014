@@ -2,13 +2,14 @@
 
 #include <iostream>
 #include "PersonService.h"
+#include "ComputerService.h"
 
 #define ALIVE Date(0,1,1)
 
 class ConsoleUI
 {
 private:
-	static const int NAMEWIDTH = 15, DATEWIDTH = 12, GENDERWIDTH = 8, DESCWIDTH = 40;
+    static const int IDWIDTH = 4 ,NAMEWIDTH = 15, DATEWIDTH = 12, GENDERWIDTH = 8, DESCWIDTH = 40;
 
 	PersonService serv;
 

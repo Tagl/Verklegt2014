@@ -84,6 +84,22 @@ void ConsoleUI::addPerson()
 
 void ConsoleUI::addComputer()
 {
+    std::string name, computerType, desc;
+    wasMade _wasMade;
+    int yearBuilt;
+    cout << "Name: ";
+    cin >> name;
+    cout << "Computer type: ";
+    cin >> computerType;
+    cout << "Was the computer made?: ";
+    cin >> _wasMade;
+    cout << "Year built(if it wasn't built enter 0): ";
+    cin >> yearBuilt;
+    cout << "Description: ";
+    std::getline(cin, desc);
+
+    serv.add(Computer(name, computerType, _wasMade, desc, yearBuilt);
+
 
 }
 
@@ -103,6 +119,7 @@ void ConsoleUI::displayPersons()
 		for (size_t i = 0; i < people.size(); i++)
 		{
 			Person p = people.at(i);
+            cout << std::setw(IDWIDTH) << p.id;
 			cout << std::setw(NAMEWIDTH) << p.firstname;
 			cout << std::setw(NAMEWIDTH) << p.surname;
 			cout << std::setw(GENDERWIDTH) << p.gender;
