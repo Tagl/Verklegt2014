@@ -67,14 +67,12 @@ void PersonRepository::add(Person p)
 {
     QSqlQuery query;
 
-    std::string _dob, _dod, _gender;
-    std::ostringstream convert_dob, convert_dod, convert_gender;
-    convert_dob << p.dob;
-    convert_dod << p.dod;
+    std::string _gender;
+    std::ostringstream convert_gender;
+
     convert_gender << p.gender;
 
-    _dob = convert_dob.str();
-    _dod = convert_dod.str();
+
     _gender = convert_gender.str();
 
     query.prepare("Insert into persons (FirstName, SurName, _dob, _dod, _gender, Description)"
