@@ -52,10 +52,10 @@ std::vector<Person> PersonRepository::getPeople(const SortTypes st, const Order 
     {
         Person p = Person();
         p.firstname = query.value("FirstName").toString().toStdString();
-        p.surname = query.value("Surname").toString().toStdString();
+        p.surname = query.value("SurName").toString().toStdString();
         p.gender = query.value("Gender").toChar().toLatin1() == 'M' ? MALE : FEMALE;
-        p.dob = Date::fromString(query.value("dob").toDate().toString("dd/MM/yyyy"));
-        p.dod = Date::fromString(query.value("dod").toDate().toString("dd/MM/yyyy"));
+        p.dob = Date::fromString(query.value("DoB").toDate().toString("dd/MM/yyyy"));
+        p.dod = Date::fromString(query.value("DoD").toDate().toString("dd/MM/yyyy"));
         p.description = query.value("Description").toString().toStdString();
         peepz.push_back(p);
     }
