@@ -5,7 +5,8 @@
 
 int main(int argc, char *argv[])
 {
-	ConsoleUI cui = ConsoleUI();
+
+    ConsoleUI cui = ConsoleUI();
 	cui.mainMenu();
 	return 0;
 }

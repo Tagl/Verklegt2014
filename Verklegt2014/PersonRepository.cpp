@@ -25,8 +25,6 @@ bool PersonRepository::load()
     return o;
 }
 
-
-
 std::vector<Person> PersonRepository::getPeople(const SortTypes st, const Order o, std::string sq)
 {
     std::vector<Person> peepz = std::vector<Person>();
@@ -57,7 +55,6 @@ void PersonRepository::add(Person p)
 
     convert_gender << p.gender;
 
-
     _gender = convert_gender.str();
 
     query.prepare("Insert into persons (FirstName, SurName, _dob, _dod, _gender, Description)"
@@ -68,6 +65,8 @@ void PersonRepository::add(Person p)
     query.bindValue(":dod", p.dod.toQDate());
     query.bindValue(":gender",QChar(_gender.at(0)));
     query.bindValue(":description", QString::fromStdString(p.description));
+
+    query.exec();
 }
 
 const std::string PersonRepository::sortNames[] = {"Nothing", "First name", "Surname", "Gender", "Date of birth", "Date of death"};
