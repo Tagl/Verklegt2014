@@ -61,6 +61,8 @@ void PersonRepository::add(Person p)
     query.bindValue(":dod", p.dod.toQDate());
     query.bindValue(":gender",QChar(_gender.at(0)));
     query.bindValue(":description", QString::fromStdString(p.description));
+
+    query.exec();
 }
 
 void PersonRepository::remove(int id)
