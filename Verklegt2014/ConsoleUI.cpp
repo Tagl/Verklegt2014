@@ -32,10 +32,10 @@ void ConsoleUI::mainMenu()
         case 4:
             displayComputers();
 			break;
-        case 5;
+        case 5:
             connect();
             break;
-        case 6;
+        case 6:
             break;
 		default:
 			cout << "Invalid input! Please try again." << endl;
