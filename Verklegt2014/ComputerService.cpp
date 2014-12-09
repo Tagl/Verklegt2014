@@ -15,9 +15,9 @@ void ComputerService::add(const Computer p)
 {
     repo.add(p);
 }
-std::vector<Computer> ComputerService::getPeople()
+std::vector<Computer> ComputerService::getComputers()
 {
-    return repo.getPeople(sortType, sortOrder, searchQuery);
+    return repo.getComputers(sortType, sortOrder, searchQuery);
 }
 
 std::string ComputerService::getQuery()

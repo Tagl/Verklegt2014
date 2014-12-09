@@ -14,7 +14,7 @@ public:
 
 
     void add(const Computer c);
-    std::vector<Computer> getPeople();
+    std::vector<Computer> getComputers();
 
     std::string getQuery();
     void setQuery(const std::string value);

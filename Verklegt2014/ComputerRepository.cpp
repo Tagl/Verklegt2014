@@ -11,7 +11,7 @@ ComputerRepository::ComputerRepository()
 
 
 
-std::vector<Computer> ComputerRepository::getComputer(const ComputerSortTypes st, const Order o, std::string sq)
+std::vector<Computer> ComputerRepository::getComputers(const ComputerSortTypes st, const Order o, std::string sq)
 {
 
     std::vector<Computer> comp = std::vector<Computer>();
@@ -62,12 +62,6 @@ std::ostream& operator<<(std::ostream& out, ComputerSortTypes st)
 {
 
     out << ComputerRepository::sortNames[(int)st];
-    return out;
-}
-
-std::ostream& operator<<(std::ostream& out, Order o)
-{
-    out << (o == ASCENDING ? "Ascending" : "Descending");
     return out;
 }
 

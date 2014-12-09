@@ -14,13 +14,12 @@ public:
     static const std::string sortNames[];
 
     ComputerRepository();
-    std::vector<Computer> getComputer(const ComputerSortTypes st = CID, const Order o = ASCENDING, std::string search = "");
+    std::vector<Computer> getComputers(const ComputerSortTypes st = CID, const Order o = ASCENDING, std::string search = "");
 
 
-    std::vector<Computer> getPeople(const ComputerSortTypes st = CID, const Order o = ASCENDING, std::string search = "");
 
     void add(Computer c);
 
     friend std::ostream& operator<<(std::ostream& out, ComputerSortTypes st);
-    friend std::ostream& operator<<(std::ostream& out, Order o);
+
 };
