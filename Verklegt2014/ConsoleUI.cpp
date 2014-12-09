@@ -94,7 +94,8 @@ void ConsoleUI::connect()
 
 void ConsoleUI::displayPersons()
 {
-	char c;
+    char c;
+    std::string line;
 	do
 	{
 		std::vector<Person> people = serv.getPeople();
@@ -113,7 +114,9 @@ void ConsoleUI::displayPersons()
 
 		cout << "Q to quit, O to change sort order, T to change sort type, S to change search query."<<endl;
 		
-		cin >> c;
+        cin.ignore(1,'\n');
+        std::getline(cin,line);
+        c = line.length() > 0 ? line.at(0) : '\0';
 		if(c == 'o' || c == 'O') serv.setSortOrder((Order)!serv.getSortOrder());
 		else if (c == 't' || c == 'T') sortMenu();
 		else if (c == 's' || c == 'S') searchMenu();
