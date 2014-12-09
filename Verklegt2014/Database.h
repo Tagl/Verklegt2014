@@ -8,4 +8,5 @@ private:
 public:
     Database();
     bool prepare();
+    QSqlDatabase getDB();
 };
