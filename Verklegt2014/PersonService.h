@@ -7,7 +7,7 @@ class PersonService
 private:
 	PersonRepository repo;
 	Order sortOrder;
-	SortTypes sortType;
+    PersonSortTypes sortType;
 	std::string searchQuery;
 public:
 	PersonService();
@@ -22,6 +22,6 @@ public:
 	Order getSortOrder();
 	void setSortOrder(const Order value);
 
-	SortTypes getSortType();
-	void setSortType(const SortTypes value);
+    PersonSortTypes getSortType();
+    void setSortType(const PersonSortTypes value);
 };

@@ -79,28 +79,26 @@ void ConsoleUI::addPerson()
 	cout << "Description: ";
 	std::getline(cin, desc);
 
-	serv.add(Person(firstname, surname, gender, dob, dod, desc));
+    pserv.add(Person(firstname, surname, gender, dob, dod, desc));
 }
 
 void ConsoleUI::addComputer()
 {
     std::string name, computerType, desc;
-    wasMade _wasMade;
+    WasMade wasMade;
     int yearBuilt;
     cout << "Name: ";
     cin >> name;
     cout << "Computer type: ";
     cin >> computerType;
     cout << "Was the computer made?: ";
-    cin >> _wasMade;
+    cin >> wasMade;
     cout << "Year built(if it wasn't built enter 0): ";
     cin >> yearBuilt;
     cout << "Description: ";
     std::getline(cin, desc);
 
-    serv.add(Computer(name, computerType, _wasMade, desc, yearBuilt);
-
-
+    //cserv.add(Computer(name, computerType, wasMade, yearBuilt, desc);
 }
 
 void ConsoleUI::connect()
@@ -114,8 +112,8 @@ void ConsoleUI::displayPersons()
     std::string line;
 	do
 	{
-		std::vector<Person> people = serv.getPeople();
-        cout << "You are sorting by " << serv.getSortType() << " in " << serv.getSortOrder() << " order" << (serv.getQuery() != "" ? " and searching for \"" + serv.getQuery() + "\"" : "") << endl;
+        std::vector<Person> people = pserv.getPeople();
+        cout << "You are sorting by " << pserv.getSortType() << " in " << pserv.getSortOrder() << " order" << (pserv.getQuery() != "" ? " and searching for \"" + pserv.getQuery() + "\"" : "") << endl;
 		for (size_t i = 0; i < people.size(); i++)
 		{
 			Person p = people.at(i);
@@ -133,7 +131,7 @@ void ConsoleUI::displayPersons()
 
         std::getline(cin,line);
         c = line.length() > 0 ? line.at(0) : '\0';
-		if(c == 'o' || c == 'O') serv.setSortOrder((Order)!serv.getSortOrder());
+        if(c == 'o' || c == 'O') pserv.setSortOrder((Order)!pserv.getSortOrder());
 		else if (c == 't' || c == 'T') sortMenu();
 		else if (c == 's' || c == 'S') searchMenu();
 	} while(c != 'q' && c != 'Q');
@@ -149,17 +147,17 @@ void ConsoleUI::sortMenu()
 {
 	int choice;
 	cout << "Select your desired sorting type." << endl;
-	for (int i = 0; i < SORTCOUNT; i++)
+    for (int i = 0; i < PERSONSORTCOUNT; i++)
 	{
 		cout << (i+1) << ". " << PersonRepository::sortNames[i] << endl;
 	}
 	do
 	{
 		cin >> choice;
-		if(choice < 1 || choice > SORTCOUNT) cout << "Invalid input!" << endl;
+        if(choice < 1 || choice > PERSONSORTCOUNT) cout << "Invalid input!" << endl;
 		else break;
 	} while(true);
-	serv.setSortType((SortTypes)(choice-1));
+    pserv.setSortType((PersonSortTypes)(choice-1));
 }
 
 void ConsoleUI::searchMenu()
@@ -168,5 +166,5 @@ void ConsoleUI::searchMenu()
 	cin.ignore(1,'\n');
 	cout << "Input your search: ";
 	std::getline(cin, s);
-	serv.setQuery(s);
+    pserv.setQuery(s);
 }

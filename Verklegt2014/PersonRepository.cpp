@@ -9,7 +9,7 @@ PersonRepository::PersonRepository()
 
 }
 
-std::vector<Person> PersonRepository::getPeople(const SortTypes st, const Order o, std::string sq)
+std::vector<Person> PersonRepository::getPeople(const PersonSortTypes st, const Order o, std::string sq)
 {
     QString search = QString::fromStdString(sq);
     std::vector<Person> peepz = std::vector<Person>();
@@ -75,7 +75,7 @@ void PersonRepository::remove(int id)
 
 const std::string PersonRepository::sortNames[] = {"ID", "Firstname", "Surname", "Gender", "DoB", "DoD"};
 
-std::ostream& operator<<(std::ostream& out, SortTypes st)
+std::ostream& operator<<(std::ostream& out, PersonSortTypes st)
 {
 	out << PersonRepository::sortNames[(int)st];
 	return out;

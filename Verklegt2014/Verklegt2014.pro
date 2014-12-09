@@ -41,4 +41,5 @@ HEADERS += \
     RelationRepository.h \
     RelationService.h \
     Database.h \
-    computer.h
+    computer.h \
+    Sort.h

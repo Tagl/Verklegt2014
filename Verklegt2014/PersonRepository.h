@@ -2,14 +2,11 @@
 #include <QtSql>
 #include <vector>
 #include "Person.h"
-
-#define SORTCOUNT 6
-
-enum SortTypes { NOTHING = 0, FIRSTNAME, SURNAME, GENDER, DOB, DOD };
-enum Order { ASCENDING = 0, DESCENDING };
+#include "Sort.h"
 
 
-std::ostream& operator<<(std::ostream& out, SortTypes st);
+
+std::ostream& operator<<(std::ostream& out, PersonSortTypes st);
 std::ostream& operator<<(std::ostream& out, Order o);
 
 class PersonRepository
@@ -21,7 +18,7 @@ public:
 
 	PersonRepository();
 
-	std::vector<Person> getPeople(const SortTypes st = NOTHING, const Order o = ASCENDING, std::string search = "");
+    std::vector<Person> getPeople(const PersonSortTypes st = NOTHING, const Order o = ASCENDING, std::string search = "");
 	void add(Person p);
     void remove(int id);
 };

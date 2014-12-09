@@ -6,8 +6,8 @@
 
 enum WasMade {YES, NO, MAYBE};
 
-std::istream& operator>>(std::istream& in, wasMade& m);
-std::ostream& operator<<(std::ostream& out, wasMade& m);
+std::istream& operator>>(std::istream& in, WasMade& m);
+std::ostream& operator<<(std::ostream& out, WasMade& m);
 
 class Computer
 {
@@ -19,7 +19,7 @@ public:
     std::string description;
 
     Computer(const Computer& value);
-    Computer(const std::string name = "Anonymous", const std::string computerType = "", const WasMade wasMade = UNSPECIFIED, const int yearBuilt = 0, const std::string desc = "");
+    Computer(const std::string name = "Anonymous", const std::string computerType = "", const WasMade wasMade = MAYBE, const int yearBuilt = 0, const std::string desc = "");
 
     const std::string getName();
     void setName(const std::string value);
@@ -28,10 +28,10 @@ public:
     void setComputerType(const std::string value);
 
     const WasMade getWasMade();
-    void setwasMade(const WasMade value);
+    void setWasMade(const WasMade value);
 
     const int getYearBuilt();
-    void setyearBuilt(const int value);
+    void setYearBuilt(const int value);
 
     const std::string getDescription();
     void setDescription(const std::string value);

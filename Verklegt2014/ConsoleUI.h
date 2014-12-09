@@ -11,7 +11,8 @@ class ConsoleUI
 private:
     static const int IDWIDTH = 4 ,NAMEWIDTH = 15, DATEWIDTH = 12, GENDERWIDTH = 8, DESCWIDTH = 40;
 
-	PersonService serv;
+    PersonService pserv;
+    ComputerService cserv;
 
 	void addPerson();
     void addComputer();

@@ -5,17 +5,17 @@ Computer::Computer(const Computer& value)
     this->id = value.id;
     this->name = value.name;
     this->computerType = value.computerType;
-    this->_wasMade = value._wasMade;
+    this->wasMade = value.wasMade;
     this->yearBuilt = value.yearBuilt;
     this->description = value.description;
 }
 
 
-Computer::Computer(const std::string name, const std::string computerType, const wasMade _wasMade, const int yearBuilt, const std::string desc)
+Computer::Computer(const std::string name, const std::string computerType, const WasMade wasMade, const int yearBuilt, const std::string desc)
 {
     this->name = name;
     this->computerType = computerType;
-    this->_wasMade = _wasMade;
+    this->wasMade = wasMade;
     this->yearBuilt = yearBuilt;
     this->description = desc;
 }
@@ -38,20 +38,20 @@ void Computer::setComputerType(const std::string value)
     computerType = value;
 }
 
-const wasMade Computer::getWasMade()
+const WasMade Computer::getWasMade()
 {
-    return _wasMade;
+    return wasMade;
 }
-void Computer::setwasMade(const wasMade value)
+void Computer::setWasMade(const WasMade value)
 {
-    _wasMade = value;
+    wasMade = value;
 }
 
 const int Computer::getYearBuilt()
 {
     return yearBuilt;
 }
-void Computer::setyearBuilt(const int value)
+void Computer::setYearBuilt(const int value)
 {
     yearBuilt = value;
 }
@@ -65,18 +65,18 @@ void Computer::setDescription(const std::string value)
     description = value;
 }
 
-std::istream& operator>>(std::istream& in, wasMade& m)
+std::istream& operator>>(std::istream& in, WasMade& m)
 {
     std::string s;
     in >> s;
     if(s == "Y" || s == "y" || s == "Yes") m = YES;
     else if(s=="N" || s == "n" || s == "No") m = NO;
-    else m = UNSPECIFIED;
+    else m = MAYBE;
 
     return in;
 }
 
-std::ostream& operator<<(std::ostream& out, wasMade& m)
+std::ostream& operator<<(std::ostream& out, WasMade& m)
 {
     if(m == YES) out << "Yes";
     else if(m == NO) out << "No";
@@ -87,13 +87,13 @@ std::ostream& operator<<(std::ostream& out, wasMade& m)
 
 std::ostream& operator<<(std::ostream& out, Computer c)
 {
-    out << c.name << " " << c.computerType << " " << c._wasMade << " " << c.yearBuilt << " " << c.description;
+    out << c.name << " " << c.computerType << " " << c.wasMade << " " << c.yearBuilt << " " << c.description;
     return out;
 }
 
 std::istream& operator>>(std::istream& in, Computer& c)
 {
-    in >> c.name >> c.computerType >> c._wasMade >> c.yearBuilt;
+    in >> c.name >> c.computerType >> c.wasMade >> c.yearBuilt;
     std::getline(in,c.description);
     return in;
 }

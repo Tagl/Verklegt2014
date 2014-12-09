@@ -10,7 +10,7 @@ ComputerRepository::ComputerRepository()
 }
 
 
-std::vector<Computer> ComputerRepository::getPeople(const SortTypes st, const Order o, std::string sq)
+std::vector<Computer> ComputerRepository::getPeople(const ComputerSortTypes st, const Order o, std::string sq)
 {
    /*
     std::vector<Person> peepz = std::vector<Person>();

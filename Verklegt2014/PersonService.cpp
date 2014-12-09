@@ -38,11 +38,11 @@ void PersonService::setSortOrder(const Order value)
 	sortOrder = value;
 }
 
-SortTypes PersonService::getSortType()
+PersonSortTypes PersonService::getSortType()
 {
 	return sortType;
 }
-void PersonService::setSortType(const SortTypes value)
+void PersonService::setSortType(const PersonSortTypes value)
 {
 	sortType = value;
 }
