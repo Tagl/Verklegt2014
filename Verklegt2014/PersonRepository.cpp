@@ -12,7 +12,7 @@ PersonRepository::PersonRepository()
 
 std::vector<Person> PersonRepository::getPeople(const PersonSortTypes st, const Order o, std::string sq)
 {
-    QString search = QString::fromStdString(sq);
+    QString search = QString("%") + QString::fromStdString(sq) + QString("%");
     std::vector<Person> peepz = std::vector<Person>();
     QSqlQuery query;
 
@@ -20,10 +20,12 @@ std::vector<Person> PersonRepository::getPeople(const PersonSortTypes st, const 
     str << st;
     QString sts = QString::fromStdString(str.str());
 
-    query.prepare("SELECT * FROM persons WHERE FirstName LIKE :search"
-               " OR SurName LIKE :search OR Description LIKE :search"
+    query.prepare("SELECT * FROM persons WHERE FirstName LIKE :search1"
+               " OR SurName LIKE :search2 OR Description LIKE :search3"
                " ORDER BY :type :order");
-    query.bindValue(":search", "%"+search+"%");
+    query.bindValue(":search1", search);
+    query.bindValue(":search2", search);
+    query.bindValue(":search3", search);
     query.bindValue(":type", sts);
     query.bindValue(":order", o==ASCENDING?"ASC":"DESC");
     std::cout << query.executedQuery().toStdString() << std::endl;
