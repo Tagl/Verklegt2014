@@ -62,9 +62,11 @@ void PersonRepository::add(Person p)
     query.bindValue(":gender",QChar(_gender.at(0)));
     query.bindValue(":description", QString::fromStdString(p.description));
 
+    std::cout << query.boundValues().size() << std::endl;
+    std::cout << query.executedQuery().toStdString()<<std::endl;
     query.exec();
     std::cout << query.lastError().text().toStdString()<<std::endl;
-    std::cout << query.executedQuery().toStdString()<<std::endl;
+
 }
 
 void PersonRepository::remove(int id)
