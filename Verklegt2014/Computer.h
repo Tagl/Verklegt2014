@@ -7,7 +7,7 @@
 enum wasMade {YES, NO, UNSPECIFIED};
 
 std::istream& operator>>(std::istream& in, wasMade& m);
-std::ostream& operator<<(std::ostream& out, wasMade m);
+std::ostream& operator<<(std::ostream& out, wasMade& m);
 
 class Computer
 {
@@ -24,13 +24,13 @@ public:
     const std::string getName();
     void setName(const std::string value);
 
-    const std::string getcomputerType();
-    void setcomputerType(const std::string value);
+    const std::string getComputerType();
+    void setComputerType(const std::string value);
 
-    const wasMade getwasMade();
+    const wasMade getWasMade();
     void setwasMade(const wasMade value);
 
-    const int getyearBuilt();
+    const int getYearBuilt();
     void setyearBuilt(const int value);
 
     const std::string getDescription();

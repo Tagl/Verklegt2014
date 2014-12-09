@@ -29,16 +29,16 @@ void Computer::setName(const std::string value)
     name = value == "" ? "Anonymous" : value;
 }
 
-const std::string Computer::computerType()
+const std::string Computer::getComputerType()
 {
     return computerType;
 }
-void Computer::setcomputerType(const std::string value)
+void Computer::setComputerType(const std::string value)
 {
     computerType = value;
 }
 
-const wasMade Computer::getwasMade()
+const wasMade Computer::getWasMade()
 {
     return _wasMade;
 }
@@ -47,7 +47,7 @@ void Computer::setwasMade(const wasMade value)
     _wasMade = value;
 }
 
-const int Computer::yearBuilt()
+const int Computer::getYearBuilt()
 {
     return yearBuilt;
 }
@@ -69,17 +69,17 @@ std::istream& operator>>(std::istream& in, wasMade& m)
 {
     std::string s;
     in >> s;
-    if(s == "Y" || s == "y" || s == "Yes") g = YES;
-    else if(s=="N" || s == "n" || s == "No") g = NO;
-    else g = UNSPECIFIED;
+    if(s == "Y" || s == "y" || s == "Yes") m = YES;
+    else if(s=="N" || s == "n" || s == "No") m = NO;
+    else m = UNSPECIFIED;
 
     return in;
 }
 
 std::ostream& operator<<(std::ostream& out, wasMade& m)
 {
-    if(g == YES) out << "Yes";
-    else if(g == NO) out << "No";
+    if(m == YES) out << "Yes";
+    else if(m == NO) out << "No";
     else out << "Unspecified";
 
     return out;
