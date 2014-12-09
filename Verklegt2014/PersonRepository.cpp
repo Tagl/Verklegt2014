@@ -20,14 +20,12 @@ std::vector<Person> PersonRepository::getPeople(const PersonSortTypes st, const 
     str << st;
     QString sts = QString::fromStdString(str.str());
 
-    query.prepare("SELECT * FROM persons WHERE FirstName LIKE :search1"
-               " OR SurName LIKE :search2 OR Description LIKE :search3"
-               " ORDER BY :type :order");
-    query.bindValue(":search1", search);
-    query.bindValue(":search2", search);
-    query.bindValue(":search3", search);
+    query.prepare("SELECT * FROM persons WHERE FirstName LIKE :search"
+               " OR SurName LIKE :search OR Description LIKE :search"
+               " ORDER BY :type " + QString(o==ASCENDING?"ASC":"DESC"));
+    query.bindValue(":search", search);
     query.bindValue(":type", sts);
-    query.bindValue(":order", o==ASCENDING?"ASC":"DESC");
+
     std::cout << query.executedQuery().toStdString() << std::endl;
     query.exec();
     std::cout << query.lastError().text().toStdString() << std::endl;
