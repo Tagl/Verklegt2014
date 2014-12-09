@@ -3,6 +3,7 @@
 #include "PersonRepository.h"
 #include <Qstring>
 #include <sstream>
+#include <iostream>
 
 PersonRepository::PersonRepository()
 {
@@ -53,8 +54,7 @@ void PersonRepository::add(Person p)
 
     _gender = convert_gender.str();
 
-    query.prepare("Insert into persons (FirstName, SurName, _dob, _dod, _gender, Description)"
-                  "VALUES(:firstname, :surname, :dob, :dod, :gender, :description)");
+    query.prepare("Insert into persons (FirstName, SurName, DoB, DoD, Gender, Description) VALUES(:firstname, :surname, :dob, :dod, :gender, :description)");
     query.bindValue(":firstname", QString::fromStdString(p.firstname));
     query.bindValue(":surname", QString::fromStdString(p.surname));
     query.bindValue(":dob", p.dob.toQDate());
@@ -63,6 +63,7 @@ void PersonRepository::add(Person p)
     query.bindValue(":description", QString::fromStdString(p.description));
 
     query.exec();
+    std::cout << query.lastError().text().toStdString();
 }
 
 void PersonRepository::remove(int id)
