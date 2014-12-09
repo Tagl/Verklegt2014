@@ -1,10 +1,7 @@
-#ifndef RELATIONSERVICE_H
-#define RELATIONSERVICE_H
+#pragma once
 
 class RelationService
 {
 public:
     RelationService();
 };
-
-#endif // RELATIONSERVICE_H

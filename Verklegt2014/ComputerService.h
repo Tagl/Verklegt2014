@@ -1,10 +1,7 @@
-#ifndef COMPUTERSERVICE_H
-#define COMPUTERSERVICE_H
+#pragma once
 
 class ComputerService
 {
 public:
     ComputerService();
 };
-
-#endif // COMPUTERSERVICE_H

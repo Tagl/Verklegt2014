@@ -32,10 +32,10 @@ void ConsoleUI::mainMenu()
         case 4:
             displayComputers();
 			break;
-        case 5;
+        case 5:
             connect();
             break;
-        case 6;
+        case 6:
             break;
 		default:
 			cout << "Invalid input! Please try again." << endl;
@@ -82,6 +82,16 @@ void ConsoleUI::addPerson()
 	serv.add(Person(firstname, surname, gender, dob, dod, desc));
 }
 
+void ConsoleUI::addComputer()
+{
+
+}
+
+void ConsoleUI::connect()
+{
+
+}
+
 void ConsoleUI::displayPersons()
 {
 	char c;
@@ -110,7 +120,10 @@ void ConsoleUI::displayPersons()
 	} while(c != 'q' && c != 'Q');
 }
 
+void ConsoleUI::displayComputers()
+{
 
+}
 
 
 void ConsoleUI::sortMenu()

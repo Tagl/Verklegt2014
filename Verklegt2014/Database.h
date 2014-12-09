@@ -1,10 +1,11 @@
-#ifndef DATABASE_H
-#define DATABASE_H
+#pragma once
+#include <QtSql>
 
 class Database
 {
+private:
+    QSqlDatabase db;
 public:
     Database();
+    bool prepare();
 };
-
-#endif // DATABASE_H
