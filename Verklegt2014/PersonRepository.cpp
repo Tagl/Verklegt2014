@@ -29,9 +29,13 @@ bool PersonRepository::load()
 
 std::vector<Person> PersonRepository::getPeople(const SortTypes st, const Order o, std::string sq)
 {
+    QString search = QString::fromStdString(sq);
     std::vector<Person> peepz = std::vector<Person>();
     QSqlQuery query;
-    query.exec(QString("SELECT * FROM persons WHERE name LIKE \"%") + QString::fromStdString(sq)  + QString("%\""));
+    query.exec(QString("SELECT * FROM persons WHERE FirstName LIKE '%") + search
+               + QString("%' OR SurName LIKE '%") + search
+               + QString("%' OR Description LIKE '%" + search + "%'"
+                         +));
 
     while(query.next())
     {

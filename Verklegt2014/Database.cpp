@@ -19,3 +19,8 @@ bool Database::prepare()
     if(!db.isOpen()) db.open();
     return db.isOpen();
 }
+
+QSqlDatabase Database::getDB()
+{
+    return db;
+}
