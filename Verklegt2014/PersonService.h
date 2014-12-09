@@ -12,8 +12,6 @@ private:
 public:
 	PersonService();
 	
-    bool load();
-	bool save(const std::string file);
 
 	void add(const Person p);
 	std::vector<Person> getPeople();

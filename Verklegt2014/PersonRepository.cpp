@@ -9,8 +9,6 @@ PersonRepository::PersonRepository()
 
 }
 
-
-
 std::vector<Person> PersonRepository::getPeople(const SortTypes st, const Order o, std::string sq)
 {
     QString search = QString::fromStdString(sq);
