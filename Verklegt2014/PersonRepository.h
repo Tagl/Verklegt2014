@@ -8,12 +8,14 @@
 enum SortTypes { NOTHING = 0, FIRSTNAME, SURNAME, GENDER, DOB, DOD };
 enum Order { ASCENDING = 0, DESCENDING };
 
+
+std::ostream& operator<<(std::ostream& out, SortTypes st);
+std::ostream& operator<<(std::ostream& out, Order o);
+
 class PersonRepository
 {
 private:
     QSqlDatabase db;
-	std::vector<Person> people;
-	std::vector<Person> search(const std::string sq);
 public:
 	static const std::string sortNames[];
 
@@ -24,7 +26,4 @@ public:
 
 	std::vector<Person> getPeople(const SortTypes st = NOTHING, const Order o = ASCENDING, std::string search = "");
 	void add(Person p);
-
-	friend std::ostream& operator<<(std::ostream& out, SortTypes st);
-	friend std::ostream& operator<<(std::ostream& out, Order o);
 };

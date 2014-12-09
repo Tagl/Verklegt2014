@@ -9,7 +9,7 @@ using std::endl;
 void ConsoleUI::mainMenu()
 {
 	int choice = 0;
-    while(choice != 4)
+    while(choice != 6)
 	{
         cout << "1. Add a person to the database" << endl;
         cout << "2. Add a computer to the database" << endl;
@@ -94,11 +94,12 @@ void ConsoleUI::connect()
 
 void ConsoleUI::displayPersons()
 {
-	char c;
+    char c;
+    std::string line;
 	do
 	{
 		std::vector<Person> people = serv.getPeople();
-		cout << "You are sorting by " << serv.getSortType() << " in " << serv.getSortOrder() << " order" << (serv.getQuery() != "" ? " and searching for \"" + serv.getQuery() + "\"" : "") << endl;
+        cout << "You are sorting by " << serv.getSortType() << " in " << serv.getSortOrder() << " order" << (serv.getQuery() != "" ? " and searching for \"" + serv.getQuery() + "\"" : "") << endl;
 		for (size_t i = 0; i < people.size(); i++)
 		{
 			Person p = people.at(i);
@@ -112,8 +113,9 @@ void ConsoleUI::displayPersons()
 		}
 
 		cout << "Q to quit, O to change sort order, T to change sort type, S to change search query."<<endl;
-		
-		cin >> c;
+
+        std::getline(cin,line);
+        c = line.length() > 0 ? line.at(0) : '\0';
 		if(c == 'o' || c == 'O') serv.setSortOrder((Order)!serv.getSortOrder());
 		else if (c == 't' || c == 'T') sortMenu();
 		else if (c == 's' || c == 'S') searchMenu();
