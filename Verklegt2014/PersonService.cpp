@@ -9,10 +9,7 @@ PersonService::PersonService()
 	searchQuery = "";
 }
 	
-bool PersonService::load()
-{
-    return repo.load();
-}
+
 
 void PersonService::add(const Person p)
 {
