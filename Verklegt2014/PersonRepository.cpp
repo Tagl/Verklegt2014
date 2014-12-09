@@ -81,11 +81,10 @@ void PersonRepository::add(Person p)
                   "VALUES(:firstname, :surname, :dob, :dod, :gender, :description)");
     query.bindValue(":firstname", QString::fromStdString(p.firstname));
     query.bindValue(":surname", QString::fromStdString(p.surname));
-    query.bindValue(":dob", Qdate::fromStdString(p._dob));
-    query.bindValue(":dod", QString::fromStdString(p._dod));
-    query.bindValue(":gender", QString::fromStdString(p._gender));
+    query.bindValue(":dob", p.dob.toQDate());
+    query.bindValue(":dod", p.dod.toQDate());
+    query.bindValue(":gender",QChar(_gender.at(0)));
     query.bindValue(":description", QString::fromStdString(p.description));
-    //people.push_back(p);
 }
 
 const std::string PersonRepository::sortNames[] = {"Nothing", "First name", "Surname", "Gender", "Date of birth", "Date of death"};
