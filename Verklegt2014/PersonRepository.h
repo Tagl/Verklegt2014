@@ -21,8 +21,7 @@ public:
 
 	PersonRepository();
 
-
-
 	std::vector<Person> getPeople(const SortTypes st = NOTHING, const Order o = ASCENDING, std::string search = "");
 	void add(Person p);
+    void remove(int id);
 };
