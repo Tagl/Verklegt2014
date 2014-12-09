@@ -28,6 +28,7 @@ std::vector<Person> PersonRepository::getPeople(const PersonSortTypes st, const 
     query.bindValue(":order", o==ASCENDING?"ASC":"DESC");
     std::cout << query.executedQuery().toStdString() << std::endl;
     query.exec();
+    std::cout << query.lastError().text().toStdString() << std::endl;
 
     while(query.next())
     {
