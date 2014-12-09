@@ -1,8 +1,8 @@
 #pragma once
 #include <QtSql>
 #include <vector>
-#include "Computer.h"
 #include "Sort.h"
+#include "computer.h"
 
 class ComputerRepository
 {
@@ -14,11 +14,11 @@ public:
     static const std::string sortNames[];
 
     ComputerRepository();
+    std::vector<Computer> getComputer(const ComputerSortTypes st = CID, const Order o = ASCENDING, std::string search = "");
 
-    bool load();
-    bool save(const std::string file);
 
     std::vector<Computer> getPeople(const ComputerSortTypes st = CID, const Order o = ASCENDING, std::string search = "");
+
     void add(Computer c);
 
     friend std::ostream& operator<<(std::ostream& out, ComputerSortTypes st);

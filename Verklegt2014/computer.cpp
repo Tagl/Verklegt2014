@@ -47,6 +47,7 @@ void Computer::setWasMade(const WasMade value)
     wasMade = value;
 }
 
+
 const int Computer::getYearBuilt()
 {
     return yearBuilt;

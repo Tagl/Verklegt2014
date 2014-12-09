@@ -53,13 +53,25 @@ SOURCES       = ../Verklegt2014/ConsoleUI.cpp \
 		../Verklegt2014/Person.cpp \
 		../Verklegt2014/PersonRepository.cpp \
 		../Verklegt2014/PersonService.cpp \
-		../Verklegt2014/Verklegt2014.cpp 
+		../Verklegt2014/Verklegt2014.cpp \
+		../Verklegt2014/ComputerRepository.cpp \
+		../Verklegt2014/ComputerService.cpp \
+		../Verklegt2014/RelationRepository.cpp \
+		../Verklegt2014/RelationService.cpp \
+		../Verklegt2014/Database.cpp \
+		../Verklegt2014/computer.cpp 
 OBJECTS       = ConsoleUI.o \
 		Date.o \
 		Person.o \
 		PersonRepository.o \
 		PersonService.o \
-		Verklegt2014.o
+		Verklegt2014.o \
+		ComputerRepository.o \
+		ComputerService.o \
+		RelationRepository.o \
+		RelationService.o \
+		Database.o \
+		computer.o
 DIST          = ../../Qt/5.4/clang_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.4/clang_64/mkspecs/qdevice.pri \
 		../../Qt/5.4/clang_64/mkspecs/features/device_config.prf \
@@ -189,12 +201,24 @@ DIST          = ../../Qt/5.4/clang_64/mkspecs/features/spec_pre.prf \
 		../Verklegt2014/Date.h \
 		../Verklegt2014/Person.h \
 		../Verklegt2014/PersonRepository.h \
-		../Verklegt2014/PersonService.h ../Verklegt2014/ConsoleUI.cpp \
+		../Verklegt2014/PersonService.h \
+		../Verklegt2014/ComputerRepository.h \
+		../Verklegt2014/ComputerService.h \
+		../Verklegt2014/RelationRepository.h \
+		../Verklegt2014/RelationService.h \
+		../Verklegt2014/Database.h \
+		../Verklegt2014/computer.h ../Verklegt2014/ConsoleUI.cpp \
 		../Verklegt2014/Date.cpp \
 		../Verklegt2014/Person.cpp \
 		../Verklegt2014/PersonRepository.cpp \
 		../Verklegt2014/PersonService.cpp \
-		../Verklegt2014/Verklegt2014.cpp
+		../Verklegt2014/Verklegt2014.cpp \
+		../Verklegt2014/ComputerRepository.cpp \
+		../Verklegt2014/ComputerService.cpp \
+		../Verklegt2014/RelationRepository.cpp \
+		../Verklegt2014/RelationService.cpp \
+		../Verklegt2014/Database.cpp \
+		../Verklegt2014/computer.cpp
 QMAKE_TARGET  = Verklegt2014
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = Verklegt2014
@@ -506,8 +530,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../Verklegt2014/ConsoleUI.h ../Verklegt2014/Date.h ../Verklegt2014/Person.h ../Verklegt2014/PersonRepository.h ../Verklegt2014/PersonService.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Verklegt2014/ConsoleUI.cpp ../Verklegt2014/Date.cpp ../Verklegt2014/Person.cpp ../Verklegt2014/PersonRepository.cpp ../Verklegt2014/PersonService.cpp ../Verklegt2014/Verklegt2014.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Verklegt2014/ConsoleUI.h ../Verklegt2014/Date.h ../Verklegt2014/Person.h ../Verklegt2014/PersonRepository.h ../Verklegt2014/PersonService.h ../Verklegt2014/ComputerRepository.h ../Verklegt2014/ComputerService.h ../Verklegt2014/RelationRepository.h ../Verklegt2014/RelationService.h ../Verklegt2014/Database.h ../Verklegt2014/computer.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Verklegt2014/ConsoleUI.cpp ../Verklegt2014/Date.cpp ../Verklegt2014/Person.cpp ../Verklegt2014/PersonRepository.cpp ../Verklegt2014/PersonService.cpp ../Verklegt2014/Verklegt2014.cpp ../Verklegt2014/ComputerRepository.cpp ../Verklegt2014/ComputerService.cpp ../Verklegt2014/RelationRepository.cpp ../Verklegt2014/RelationService.cpp ../Verklegt2014/Database.cpp ../Verklegt2014/computer.cpp $(DISTDIR)/
 
 
 clean:compiler_clean 
@@ -570,18 +594,24 @@ ConsoleUI.o: ../Verklegt2014/ConsoleUI.cpp ../Verklegt2014/ConsoleUI.h \
 		../Verklegt2014/Person.h \
 		../Verklegt2014/Date.h \
 		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/Qstring \
-		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QDate \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qdatetime.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ConsoleUI.o ../Verklegt2014/ConsoleUI.cpp
 
 Date.o: ../Verklegt2014/Date.cpp ../Verklegt2014/Date.h \
 		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/Qstring \
-		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QDate \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qdatetime.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Date.o ../Verklegt2014/Date.cpp
 
 Person.o: ../Verklegt2014/Person.cpp ../Verklegt2014/Person.h \
 		../Verklegt2014/Date.h \
 		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/Qstring \
-		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QDate \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qdatetime.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Person.o ../Verklegt2014/Person.cpp
 
 PersonRepository.o: ../Verklegt2014/PersonRepository.cpp ../Verklegt2014/PersonRepository.h \
@@ -604,7 +634,9 @@ PersonRepository.o: ../Verklegt2014/PersonRepository.cpp ../Verklegt2014/PersonR
 		../Verklegt2014/Person.h \
 		../Verklegt2014/Date.h \
 		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/Qstring \
-		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QDate \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qdatetime.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o PersonRepository.o ../Verklegt2014/PersonRepository.cpp
 
 PersonService.o: ../Verklegt2014/PersonService.cpp ../Verklegt2014/PersonService.h \
@@ -628,7 +660,9 @@ PersonService.o: ../Verklegt2014/PersonService.cpp ../Verklegt2014/PersonService
 		../Verklegt2014/Person.h \
 		../Verklegt2014/Date.h \
 		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/Qstring \
-		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QDate \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qdatetime.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o PersonService.o ../Verklegt2014/PersonService.cpp
 
 Verklegt2014.o: ../Verklegt2014/Verklegt2014.cpp ../Verklegt2014/ConsoleUI.h \
@@ -653,8 +687,71 @@ Verklegt2014.o: ../Verklegt2014/Verklegt2014.cpp ../Verklegt2014/ConsoleUI.h \
 		../Verklegt2014/Person.h \
 		../Verklegt2014/Date.h \
 		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/Qstring \
-		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QDate \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qdatetime.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Verklegt2014.o ../Verklegt2014/Verklegt2014.cpp
+
+ComputerRepository.o: ../Verklegt2014/ComputerRepository.cpp ../Verklegt2014/ComputerRepository.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/QtSql \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsql.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqldatabase.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqldriver.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqldriverplugin.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlerror.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlfield.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlindex.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlquery.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlrecord.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlresult.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlquerymodel.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlrelationaldelegate.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlrelationaltablemodel.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqltablemodel.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qtsqlversion.h \
+		../Verklegt2014/computer.h \
+		../Verklegt2014/Date.h \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/Qstring \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QDate \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qdatetime.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ComputerRepository.o ../Verklegt2014/ComputerRepository.cpp
+
+ComputerService.o: ../Verklegt2014/ComputerService.cpp ../Verklegt2014/ComputerService.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ComputerService.o ../Verklegt2014/ComputerService.cpp
+
+RelationRepository.o: ../Verklegt2014/RelationRepository.cpp ../Verklegt2014/RelationRepository.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o RelationRepository.o ../Verklegt2014/RelationRepository.cpp
+
+RelationService.o: ../Verklegt2014/RelationService.cpp ../Verklegt2014/RelationService.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o RelationService.o ../Verklegt2014/RelationService.cpp
+
+Database.o: ../Verklegt2014/Database.cpp ../Verklegt2014/Database.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/QtSql \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsql.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqldatabase.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqldriver.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqldriverplugin.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlerror.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlfield.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlindex.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlquery.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlrecord.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlresult.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlquerymodel.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlrelationaldelegate.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqlrelationaltablemodel.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qsqltablemodel.h \
+		../../Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers/qtsqlversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Database.o ../Verklegt2014/Database.cpp
+
+computer.o: ../Verklegt2014/computer.cpp ../Verklegt2014/computer.h \
+		../Verklegt2014/Date.h \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/Qstring \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/QDate \
+		../../Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers/qdatetime.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o computer.o ../Verklegt2014/computer.cpp
 
 ####### Install
 
