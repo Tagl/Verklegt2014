@@ -6,7 +6,7 @@
 
 PersonRepository::PersonRepository()
 {
-	people = std::vector<Person>();
+
 }
 
 bool PersonRepository::load()
@@ -25,22 +25,7 @@ bool PersonRepository::load()
     return o;
 }
 
-bool PersonRepository::save(const std::string file)
-{
-	std::ofstream out;
-	out.open(file, std::ios_base::out);
-	if(out.is_open())
-	{
-		for (size_t i = 0; i < people.size(); i++)
-		{
-			if(i!=0) out << std::endl;
-			out << people.at(i);
-		}
-		out.close();
-		return true;
-	}
-	else return false;
-}
+
 
 std::vector<Person> PersonRepository::getPeople(const SortTypes st, const Order o, std::string sq)
 {

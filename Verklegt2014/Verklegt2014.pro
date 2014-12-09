@@ -26,7 +26,8 @@ SOURCES += \
     ComputerRepository.cpp \
     ComputerService.cpp \
     RelationRepository.cpp \
-    RelationService.cpp
+    RelationService.cpp \
+    Database.cpp
 
 HEADERS += \
     ConsoleUI.h \
@@ -37,4 +38,5 @@ HEADERS += \
     ComputerRepository.h \
     ComputerService.h \
     RelationRepository.h \
-    RelationService.h
+    RelationService.h \
+    Database.h

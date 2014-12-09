@@ -13,10 +13,6 @@ bool PersonService::load()
 {
     return repo.load();
 }
-bool PersonService::save(const std::string file)
-{
-	return repo.save(file);
-}
 
 void PersonService::add(const Person p)
 {

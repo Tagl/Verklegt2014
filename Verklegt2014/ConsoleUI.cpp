@@ -9,13 +9,12 @@ using std::endl;
 void ConsoleUI::mainMenu()
 {
 	int choice = 0;
-	while(choice != 5)
+    while(choice != 4)
 	{
 		cout << "1. Add person to list" << endl;
 		cout << "2. Display list" << endl;
-		cout << "3. Save list to file" << endl;
-		cout << "4. Load list from file" << endl;
-		cout << "5. Exit" << endl;
+        cout << "3. Load list from file" << endl;
+        cout << "4. Exit" << endl;
 		cin >> choice;
 		switch(choice)
 		{
@@ -24,14 +23,11 @@ void ConsoleUI::mainMenu()
 			break;
 		case 2:
 			displayPersons();
-			break;
-		case 3:
-			saveMenu();
-			break;
-		case 4:
+            break;
+        case 3:
 			loadMenu();
 			break;
-		case 5:
+        case 4:
 			break;
 		default:
 			cout << "Invalid input! Please try again." << endl;
@@ -116,15 +112,6 @@ void ConsoleUI::loadMenu()
 	cout << endl;
 }
 
-void ConsoleUI::saveMenu()
-{
-	std::string filename;
-	cout << "Enter filename: ";
-	cin >> filename;
-	if(serv.save(filename)) cout << "File succesfully saved.";
-	else cout << "Error! Could not save file.";
-	cout << endl;
-}
 
 void ConsoleUI::sortMenu()
 {

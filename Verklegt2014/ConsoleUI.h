@@ -13,7 +13,6 @@ private:
 	PersonService serv;
 
 	void addPerson();
-	void saveMenu();
 	void loadMenu();
 	void searchMenu();
 	void sortMenu();
