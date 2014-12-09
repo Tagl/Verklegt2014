@@ -113,8 +113,7 @@ void ConsoleUI::displayPersons()
 		}
 
 		cout << "Q to quit, O to change sort order, T to change sort type, S to change search query."<<endl;
-		
-        cin.ignore(1,'\n');
+
         std::getline(cin,line);
         c = line.length() > 0 ? line.at(0) : '\0';
 		if(c == 'o' || c == 'O') serv.setSortOrder((Order)!serv.getSortOrder());
