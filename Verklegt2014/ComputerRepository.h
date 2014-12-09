@@ -18,7 +18,7 @@ public:
     bool load();
     bool save(const std::string file);
 
-    std::vector<Computer> getPeople(const ComputerSortTypes st = ID, const Order o = ASCENDING, std::string search = "");
+    std::vector<Computer> getPeople(const ComputerSortTypes st = CID, const Order o = ASCENDING, std::string search = "");
     void add(Computer c);
 
     friend std::ostream& operator<<(std::ostream& out, ComputerSortTypes st);

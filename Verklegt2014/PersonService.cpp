@@ -4,7 +4,7 @@
 PersonService::PersonService()
 {
 	repo = PersonRepository();
-	sortType = NOTHING;
+    sortType = PID;
 	sortOrder = ASCENDING;
 	searchQuery = "";
 }
