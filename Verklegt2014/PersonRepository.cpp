@@ -35,7 +35,7 @@ std::vector<Person> PersonRepository::getPeople(const SortTypes st, const Order 
     query.exec(QString("SELECT * FROM persons WHERE FirstName LIKE '%") + search
                + QString("%' OR SurName LIKE '%") + search
                + QString("%' OR Description LIKE '%" + search + "%'"
-                         +));
+                         ));
 
     while(query.next())
     {

@@ -9,8 +9,8 @@ enum SortTypes { NOTHING = 0, FIRSTNAME, SURNAME, GENDER, DOB, DOD };
 enum Order { ASCENDING = 0, DESCENDING };
 
 
-friend std::ostream& operator<<(std::ostream& out, SortTypes st);
-friend std::ostream& operator<<(std::ostream& out, Order o);
+std::ostream& operator<<(std::ostream& out, SortTypes st);
+std::ostream& operator<<(std::ostream& out, Order o);
 
 class PersonRepository
 {
