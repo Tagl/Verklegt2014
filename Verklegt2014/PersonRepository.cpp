@@ -26,7 +26,7 @@ std::vector<Person> PersonRepository::getPeople(const PersonSortTypes st, const 
     query.bindValue(":search", "%"+search+"%");
     query.bindValue(":type", sts);
     query.bindValue(":order", o==ASCENDING?"ASC":"DESC");
-
+    std::cout << query.executedQuery().toStdString() << std::endl;
     query.exec();
 
     while(query.next())
