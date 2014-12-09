@@ -58,6 +58,16 @@ void PersonRepository::add(Person p)
     query.bindValue(":description", QString::fromStdString(p.description));
 }
 
+void PersonRepository::remove(int id)
+{
+    QSqlQuery query;
+
+    query.prepare(QString("DELETE FROM persons WHERE id=:id;"));
+    query.bindValue(":id", id);
+
+    query.exec();
+}
+
 const std::string PersonRepository::sortNames[] = {"Nothing", "First name", "Surname", "Gender", "Date of birth", "Date of death"};
 
 std::ostream& operator<<(std::ostream& out, SortTypes st)
