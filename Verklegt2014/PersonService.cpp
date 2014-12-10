@@ -15,6 +15,12 @@ void PersonService::add(const Person p)
 {
 	repo.add(p);
 }
+
+void PersonService::remove(const int id)
+{
+    repo.remove(id);
+}
+
 std::vector<Person> PersonService::getPeople()
 {
 	return repo.getPeople(sortType, sortOrder, searchQuery);

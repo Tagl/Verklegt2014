@@ -3,6 +3,7 @@
 #include "ComputerRepository.h"
 #include <Qstring>
 #include <sstream>
+#include "Database.h"
 
 ComputerRepository::ComputerRepository()
 {
@@ -12,50 +13,73 @@ ComputerRepository::ComputerRepository()
 
 
 std::vector<Computer> ComputerRepository::getComputers(const ComputerSortTypes st, const Order o, std::string sq)
-{
-
+{    
     std::vector<Computer> comp = std::vector<Computer>();
+    if(!Database::getCurrent()->prepare()) return comp;
+    QString search = QString("%") + QString::fromStdString(sq) + QString("%");
     QSqlQuery query;
-    query.exec(QString("SELECT * FROM Computer WHERE name LIKE \"%") + QString::fromStdString(sq)  + QString("%\""));
+
+    std::ostringstream str;
+    str << st;
+    QString sts = QString::fromStdString(str.str());
+
+    query.prepare("SELECT * FROM Computers WHERE Name LIKE :search"
+               " OR ComputerType LIKE :search OR Description LIKE :search"
+               " ORDER BY :type " + QString(o==ASCENDING?"ASC":"DESC"));
+    query.bindValue(":search", search);
+    query.bindValue(":type", sts);
+
+    query.exec();
 
     while(query.next())
     {
         Computer c = Computer();
+        c.id = query.value("ID").toInt();
         c.name = query.value("Name").toString().toStdString();
         c.computerType = query.value("ComputerType").toString().toStdString();
-        c.wasMade = query.value("WasMade").toChar().toLatin1() == 'Y' ? YES : NO;
+        c.wasMade = query.value("WasMade").toString() == "Y" ? YES : NO;
         c.yearBuilt = query.value("YearBuilt").toInt();
         c.description = query.value("Description").toString().toStdString();
         comp.push_back(c);
     }
-
     return comp;
 }
 
 void ComputerRepository::add(Computer c)
 {
-
+    if(!Database::getCurrent()->prepare()) return;
     QSqlQuery query;
 
-    std::string wasMade_;
-    std::ostringstream convertWasMade_;
+    std::string wasMade;
+    std::ostringstream convert;
 
-    convertWasMade_ << c.wasMade;
+    convert << c.wasMade;
 
-    wasMade_ = convertWasMade_.str();
+    wasMade = convert.str();
 
-    query.prepare("Insert into computers(Name, ComputerType, YearBuilt, wasMade, Description) VALUES(:name, :computertype, :yearbuilt, :wasmade, :description)");
+
+    query.prepare("Insert into Computers (Name, ComputerType, WasMade, YearBuilt, Description) VALUES(:name, :computertype, :wasmade, :yearbuilt, :description)");
     query.bindValue(":name", QString::fromStdString(c.name));
     query.bindValue(":computertype", QString::fromStdString(c.computerType));
+    query.bindValue(":wasmade", QChar(wasMade.at(0)));
     query.bindValue(":yearbuilt", c.yearBuilt);
-    query.bindValue(":wasmade",QChar(wasMade_.at(0)));
     query.bindValue(":description", QString::fromStdString(c.description));
 
     query.exec();
-
 }
 
-const std::string ComputerRepository::sortNames[] = {"id", "Name", "ComputerType", "WasMade", "YearBuilt"};
+void ComputerRepository::remove(int id)
+{
+    if(!Database::getCurrent()->prepare()) return;
+    QSqlQuery query;
+
+    query.prepare(QString("DELETE FROM Computers WHERE id=:id;"));
+    query.bindValue(":id", id);
+
+    query.exec();
+}
+
+const std::string ComputerRepository::sortNames[] = {"ID", "Name", "ComputerType", "WasMade", "YearBuilt"};
 
 std::ostream& operator<<(std::ostream& out, ComputerSortTypes st)
 {

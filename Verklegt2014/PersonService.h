@@ -14,6 +14,7 @@ public:
 	
 
 	void add(const Person p);
+    void remove(const int id);
 	std::vector<Person> getPeople();
 
 	std::string getQuery();

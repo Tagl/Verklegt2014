@@ -4,7 +4,7 @@
 #include <Qstring>
 #include <sstream>
 #include <iostream>
-
+#include "Database.h"
 PersonRepository::PersonRepository()
 {
 
@@ -12,8 +12,9 @@ PersonRepository::PersonRepository()
 
 std::vector<Person> PersonRepository::getPeople(const PersonSortTypes st, const Order o, std::string sq)
 {
-    QString search = QString("%") + QString::fromStdString(sq) + QString("%");
     std::vector<Person> peepz = std::vector<Person>();
+    if(!Database::getCurrent()->prepare()) return peepz;
+    QString search = QString("%") + QString::fromStdString(sq) + QString("%");
     QSqlQuery query;
 
     std::ostringstream str;
@@ -26,9 +27,7 @@ std::vector<Person> PersonRepository::getPeople(const PersonSortTypes st, const 
     query.bindValue(":search", search);
     query.bindValue(":type", sts);
 
-    std::cout << query.executedQuery().toStdString() << std::endl;
     query.exec();
-    std::cout << query.lastError().text().toStdString() << std::endl;
 
     while(query.next())
     {
@@ -36,9 +35,10 @@ std::vector<Person> PersonRepository::getPeople(const PersonSortTypes st, const 
         p.id = query.value("ID").toInt();
         p.firstname = query.value("FirstName").toString().toStdString();
         p.surname = query.value("SurName").toString().toStdString();
-        p.gender = query.value("Gender").toChar().toLatin1() == 'M' ? MALE : FEMALE;
+        p.gender = query.value("Gender").toString() == "M" ? MALE : FEMALE;
         p.dob = Date::fromString(query.value("DoB").toDate().toString("dd/MM/yyyy"));
-        p.dod = Date::fromString(query.value("DoD").toDate().toString("dd/MM/yyyy"));
+        bool temp = query.value("DoD").isNull();
+        p.dod = temp ? Date() : Date::fromString(query.value("DoD").toDate().toString("dd/MM/yyyy"));
         p.description = query.value("Description").toString().toStdString();
         peepz.push_back(p);
     }
@@ -48,33 +48,31 @@ std::vector<Person> PersonRepository::getPeople(const PersonSortTypes st, const 
 
 void PersonRepository::add(Person p)
 {
+    if(!Database::getCurrent()->prepare()) return;
     QSqlQuery query;
 
-    std::string _gender;
-    std::ostringstream convert_gender;
+    std::string gender;
+    std::ostringstream convert;
 
-    convert_gender << p.gender;
+    convert << p.gender;
 
-
-    _gender = convert_gender.str();
+    gender = convert.str();
 
     query.prepare("Insert into persons (FirstName, SurName, DoB, DoD, Gender, Description) VALUES(:firstname, :surname, :dob, :dod, :gender, :description)");
     query.bindValue(":firstname", QString::fromStdString(p.firstname));
     query.bindValue(":surname", QString::fromStdString(p.surname));
     query.bindValue(":dob", p.dob.toQDate());
     query.bindValue(":dod", p.dod.toQDate());
-    query.bindValue(":gender",QChar(_gender.at(0)));
+    query.bindValue(":gender",QChar(gender.at(0)));
     query.bindValue(":description", QString::fromStdString(p.description));
 
-    std::cout << query.boundValues().size() << std::endl;
-    std::cout << query.executedQuery().toStdString()<<std::endl;
     query.exec();
-    std::cout << query.lastError().text().toStdString()<<std::endl;
 
 }
 
 void PersonRepository::remove(int id)
 {
+    if(!Database::getCurrent()->prepare()) return;
     QSqlQuery query;
 
     query.prepare(QString("DELETE FROM persons WHERE id=:id;"));
