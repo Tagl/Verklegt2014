@@ -4,10 +4,10 @@
 #
 #-------------------------------------------------
 
-QT       += core
+QT       += core gui
 QT       += sql
 
-QT       -= gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Verklegt2014
 CONFIG   += console
@@ -28,7 +28,8 @@ SOURCES += \
     RelationRepository.cpp \
     RelationService.cpp \
     Database.cpp \
-    computer.cpp
+    computer.cpp \
+    mainwindow.cpp
 
 HEADERS += \
     ConsoleUI.h \
@@ -42,4 +43,8 @@ HEADERS += \
     RelationService.h \
     Database.h \
     computer.h \
-    Sort.h
+    Sort.h \
+    mainwindow.h
+
+FORMS += \
+    mainwindow.ui

@@ -25,7 +25,7 @@ std::vector<Computer> ComputerRepository::getComputers(const ComputerSortTypes s
 
     query.prepare("SELECT * FROM Computers WHERE Name LIKE :search"
                " OR ComputerType LIKE :search OR Description LIKE :search"
-               " ORDER BY :type " + QString(o==ASCENDING?"ASC":"DESC"));
+               " ORDER BY "+ sts + " " + QString(o==ASCENDING?"ASC":"DESC"));
     query.bindValue(":search", search);
     query.bindValue(":type", sts);
 
@@ -83,7 +83,6 @@ const std::string ComputerRepository::sortNames[] = {"ID", "Name", "ComputerType
 
 std::ostream& operator<<(std::ostream& out, ComputerSortTypes st)
 {
-
     out << ComputerRepository::sortNames[(int)st];
     return out;
 }

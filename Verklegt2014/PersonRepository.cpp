@@ -23,10 +23,8 @@ std::vector<Person> PersonRepository::getPeople(const PersonSortTypes st, const 
 
     query.prepare("SELECT * FROM persons WHERE FirstName LIKE :search"
                " OR SurName LIKE :search OR Description LIKE :search"
-               " ORDER BY :type " + QString(o==ASCENDING?"ASC":"DESC"));
+               " ORDER BY " + sts + " " + (o==ASCENDING?"ASC":"DESC"));
     query.bindValue(":search", search);
-    query.bindValue(":type", sts);
-
     query.exec();
 
     while(query.next())
