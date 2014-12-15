@@ -1,2 +1,6 @@
 *.user
 build-*/
+Verklegt2014/Verklegt2014widget/mainwindow.ui
+Verklegt2014/Verklegt2014widget/mainwindow.cpp
+Verklegt2014/Verklegt2014widget/mainwindow.h
+Verklegt2014/Verklegt2014widget/main.cpp
