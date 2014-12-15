@@ -16,8 +16,6 @@ public:
     ComputerRepository();
     std::vector<Computer> getComputers(const ComputerSortTypes st = CID, const Order o = ASCENDING, std::string search = "");
 
-
-
     void add(Computer c);
     void remove(int id);
 

@@ -15,6 +15,13 @@ public:
     explicit AddScientistDialog(QWidget *parent = 0);
     ~AddScientistDialog();
 
+private slots:
+    void on_FirstName_textChanged(const QString &arg1);
+
+    void on_SurName_textChanged(const QString &arg1);
+
+    void on_Description_textChanged(const QString &arg1);
+
 private:
     Ui::AddScientistDialog *ui;
 };
