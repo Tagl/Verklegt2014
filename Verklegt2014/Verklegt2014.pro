@@ -28,8 +28,10 @@ SOURCES += \
     RelationRepository.cpp \
     RelationService.cpp \
     Database.cpp \
-    computer.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    AddScientistDialog.cpp \
+    AddComputerDialog.cpp \
+    Computer.cpp
 
 HEADERS += \
     ConsoleUI.h \
@@ -42,9 +44,13 @@ HEADERS += \
     RelationRepository.h \
     RelationService.h \
     Database.h \
-    computer.h \
     Sort.h \
-    mainwindow.h
+    mainwindow.h \
+    AddScientistDialog.h \
+    AddComputerDialog.h \
+    Computer.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    AddScientistDialog.ui \
+    AddComputerDialog.ui
