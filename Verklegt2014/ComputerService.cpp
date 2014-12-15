@@ -22,7 +22,6 @@ void ComputerService::remove(const int id)
 std::vector<Computer> ComputerService::getComputers()
 {
     return repo.getComputers(sortType, sortOrder, searchQuery);
-
 }
 
 std::string ComputerService::getQuery()
