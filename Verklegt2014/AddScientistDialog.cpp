@@ -10,5 +10,6 @@ AddScientistDialog::AddScientistDialog(QWidget *parent) :
 
 AddScientistDialog::~AddScientistDialog()
 {
+
     delete ui;
 }
