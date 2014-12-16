@@ -2,6 +2,7 @@
 
 #include <QMainWindow>
 #include "PersonService.h"
+#include "ComputerService.h"
 #include "Database.h"
 
 namespace Ui {
@@ -23,10 +24,13 @@ private slots:
 
     void on_tabWidget_currentChanged(int index);
 
+    void on_addScientist_clicked();
+
 private:
     Ui::MainWindow *ui;
     Database db;
     PersonService pserv;
+    ComputerService cserv;
 
     void displayScientists();
     void displayComputers();

@@ -1,5 +1,4 @@
-#ifndef ADDSCIENTISTDIALOG_H
-#define ADDSCIENTISTDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -25,5 +24,3 @@ private slots:
 private:
     Ui::AddScientistDialog *ui;
 };
-
-#endif // ADDSCIENTISTDIALOG_H

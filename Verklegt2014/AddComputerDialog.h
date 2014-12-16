@@ -1,5 +1,4 @@
-#ifndef ADDCOMPUTERDIALOG_H
-#define ADDCOMPUTERDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -25,5 +24,3 @@ private slots:
 private:
     Ui::AddComputerDialog *ui;
 };
-
-#endif // ADDCOMPUTERDIALOG_H
