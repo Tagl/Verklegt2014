@@ -12,3 +12,6 @@ AddComputerDialog::~AddComputerDialog()
 {
     delete ui;
 }
+
+
+//lala og bíbí
