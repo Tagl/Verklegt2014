@@ -71,7 +71,7 @@
       <string>dd/MM/yyyy</string>
      </property>
      <property name="calendarPopup">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
     </widget>
    </item>

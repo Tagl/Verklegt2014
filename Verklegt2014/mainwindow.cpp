@@ -94,3 +94,12 @@ void MainWindow::on_addScientist_clicked()
     a.exec();
     displayScientists();
 }
+
+void MainWindow::on_removeScientist_clicked()
+{
+    auto list = ui->scientistTable->selectedItems();
+    for(size_t i = 0; i < list.size(); i++)
+    {
+        QTableWidgetItem* item = list.at(i);
+    }
+}

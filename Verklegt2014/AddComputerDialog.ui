@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>368</width>
-    <height>190</height>
+    <height>241</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -66,10 +66,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="Description">
-     <property name="text">
-      <string/>
-     </property>
+    <widget class="QPlainTextEdit" name="Description">
      <property name="placeholderText">
       <string>Description</string>
      </property>

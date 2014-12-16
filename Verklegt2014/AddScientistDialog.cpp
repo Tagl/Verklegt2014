@@ -8,8 +8,8 @@ AddScientistDialog::AddScientistDialog(MainWindow *parent) :
     ui(new Ui::AddScientistDialog)
 {
     ui->setupUi(this);
-    ui->DoB->setMinimumDate(QDate(1,1,1));
-    ui->DoD->setMinimumDate(QDate(1,1,1));
+    ui->DoB->setMinimumDate(QDate(100,1,1));
+    ui->DoD->setMinimumDate(QDate(100,1,1));
 }
 
 AddScientistDialog::~AddScientistDialog()

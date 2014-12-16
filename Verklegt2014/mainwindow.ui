@@ -86,13 +86,6 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="editScientist">
-            <property name="text">
-             <string>Edit Scientist</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QPushButton" name="removeScientist">
             <property name="text">
              <string>Remove Scientist</string>
