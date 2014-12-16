@@ -12,7 +12,7 @@ class AddScientistDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit AddScientistDialog(QWidget *parent = 0);
+    explicit AddScientistDialog(MainWindow *parent = 0);
     ~AddScientistDialog();
 
     void on_buttonBox_accepted();
@@ -21,4 +21,5 @@ public:
 
 private:
     Ui::AddScientistDialog *ui;
+    MainWindow* main;
 };

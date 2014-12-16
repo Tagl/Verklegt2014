@@ -1,11 +1,15 @@
 #include "AddScientistDialog.h"
 #include "ui_AddScientistDialog.h"
+#include "mainwindow.h"
 
-AddScientistDialog::AddScientistDialog(QWidget *parent) :
+AddScientistDialog::AddScientistDialog(MainWindow *parent) :
     QDialog(parent),
+    main(parent),
     ui(new Ui::AddScientistDialog)
 {
     ui->setupUi(this);
+    ui->DoB->setMinimumDate(QDate(100,1,1));
+    ui->DoD->setMinimumDate(QDate(100,1,1));
 }
 
 AddScientistDialog::~AddScientistDialog()

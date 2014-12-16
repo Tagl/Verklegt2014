@@ -155,13 +155,6 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="EditComputer">
-            <property name="text">
-             <string>Edit Computer</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QPushButton" name="RemoveComputer">
             <property name="text">
              <string>Remove Computer</string>
