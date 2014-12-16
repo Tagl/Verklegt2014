@@ -3,6 +3,7 @@
 #include <vector>
 #include "Sort.h"
 #include "Computer.h"
+#include "Person.h"
 
 class ComputerRepository
 {
@@ -15,7 +16,8 @@ public:
 
     ComputerRepository();
     std::vector<Computer> getComputers(const ComputerSortTypes st = CID, const Order o = ASCENDING, std::string search = "");
-
+    std::vector<Computer> getAllConnected(int pid);
+    std::vector<Computer> getAllDisconnected(int pid);
 
 
     void add(Computer c);

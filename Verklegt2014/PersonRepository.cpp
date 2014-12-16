@@ -6,9 +6,66 @@
 #include <iostream>
 #include "Database.h"
 #include <QDebug>
+#include "Computer.h"
 PersonRepository::PersonRepository()
 {
 
+}
+
+std::vector<Person> PersonRepository::getAllDisconnected(int cid)
+{
+    std::vector<Person> peepz = std::vector<Person>();
+    if(!Database::getCurrent()->prepare()) return peepz;
+    QSqlQuery query;
+
+
+    query.prepare("SELECT * FROM Persons p WHERE p.id NOT IN (SELECT p_id FROM Connections c WHERE c.c_id = :id);");
+    query.bindValue(":id", cid);
+    query.exec();
+
+    while(query.next())
+    {
+        Person p = Person();
+        p.id = query.value("p.ID").toInt();
+        p.firstname = query.value("p.FirstName").toString().toStdString();
+        p.surname = query.value("p.SurName").toString().toStdString();
+        p.gender = query.value("p.Gender").toString() == "M" ? MALE : FEMALE;
+        p.dob = Date::fromString(query.value("p.DoB").toDate().toString("dd/MM/yyyy"));
+        bool temp = query.value("p.DoD").isNull();
+        p.dod = temp ? Date() : Date::fromString(query.value("p.DoD").toDate().toString("dd/MM/yyyy"));
+        p.description = query.value("p.Description").toString().toStdString();
+        peepz.push_back(p);
+    }
+
+    return peepz;
+}
+
+std::vector<Person> PersonRepository::getAllConnected(int cid)
+{
+    std::vector<Person> peepz = std::vector<Person>();
+    if(!Database::getCurrent()->prepare()) return peepz;
+    QSqlQuery query;
+
+
+    query.prepare("SELECT * FROM Connections c INNER JOIN Persons p ON p.id = c.p_id WHERE c.c_id = :id;");
+    query.bindValue(":id", cid);
+    query.exec();
+
+    while(query.next())
+    {
+        Person p = Person();
+        p.id = query.value("p.ID").toInt();
+        p.firstname = query.value("p.FirstName").toString().toStdString();
+        p.surname = query.value("p.SurName").toString().toStdString();
+        p.gender = query.value("p.Gender").toString() == "M" ? MALE : FEMALE;
+        p.dob = Date::fromString(query.value("p.DoB").toDate().toString("dd/MM/yyyy"));
+        bool temp = query.value("p.DoD").isNull();
+        p.dod = temp ? Date() : Date::fromString(query.value("p.DoD").toDate().toString("dd/MM/yyyy"));
+        p.description = query.value("p.Description").toString().toStdString();
+        peepz.push_back(p);
+    }
+
+    return peepz;
 }
 
 std::vector<Person> PersonRepository::getPeople(const PersonSortTypes st, const Order o, std::string sq)

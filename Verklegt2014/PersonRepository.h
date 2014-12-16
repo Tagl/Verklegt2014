@@ -17,7 +17,8 @@ public:
 	static const std::string sortNames[];
 
 	PersonRepository();
-
+    std::vector<Person> getAllConnected(int cid);
+    std::vector<Person> getAllDisconnected(int cid);
     std::vector<Person> getPeople(const PersonSortTypes st = PID, const Order o = ASCENDING, std::string search = "");
 	void add(Person p);
     void remove(int id);

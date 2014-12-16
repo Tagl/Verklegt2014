@@ -8,6 +8,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    ui->scientistTable->sortByColumn(0, Qt::AscendingOrder);
+    ui->computerTable->sortByColumn(0, Qt::AscendingOrder);
+
     displayScientists();
     displayComputers();
 }
@@ -87,7 +91,12 @@ void MainWindow::displayScientists()
 
 void MainWindow::on_tabWidget_currentChanged(int index)
 {
-    if(index == 0) displayScientists();
+    if(index == 0)
+    {
+        displayScientists();
+        displayConnectedComputers();
+        displayDisconnectedComputers();
+    }
     else if (index == 1) displayComputers();
 }
 
@@ -137,4 +146,75 @@ void MainWindow::on_RemoveComputer_clicked()
         computerService.remove(id->text().toInt());
     }
     displayComputers();
+}
+
+void MainWindow::on_scientistTable_clicked(const QModelIndex &index)
+{
+}
+
+void MainWindow::displayConnectedComputers()
+{
+    ui->connectedComputers->setRowCount(0);
+    if(selectedScientist == -1) return;
+
+    ui->connectedComputers->setSortingEnabled(false);
+    std::vector<Computer> comp = computerService.getConnected(selectedScientist);
+
+    ui->connectedComputers->setRowCount(comp.size());
+    auto order = ui->connectedComputers->horizontalHeader()->sortIndicatorOrder();
+    auto column = ui->connectedComputers->horizontalHeader()->sortIndicatorOrder();
+    for(size_t i = 0; i < comp.size(); i++)
+    {
+        Computer c = comp.at(i);
+        QString cId = QString::number(c.id);
+        QString cName = QString::fromStdString(c.name);
+
+        ui->connectedComputers->setItem(i,0,new QTableWidgetItem(cId));
+        ui->connectedComputers->setItem(i,1,new QTableWidgetItem(cName));
+    }
+
+    ui->connectedComputers->setSortingEnabled(true);
+    ui->connectedComputers->sortByColumn(order, column);
+}
+
+void MainWindow::displayDisconnectedComputers()
+{
+    ui->disconnectedComputers->setRowCount(0);
+    if(selectedScientist == -1) return;
+
+    ui->disconnectedComputers->setSortingEnabled(false);
+    std::vector<Computer> comp = computerService.getDisconnected(selectedScientist);
+
+    ui->disconnectedComputers->setRowCount(comp.size());
+    auto order = ui->disconnectedComputers->horizontalHeader()->sortIndicatorOrder();
+    auto column = ui->disconnectedComputers->horizontalHeader()->sortIndicatorOrder();
+    for(size_t i = 0; i < comp.size(); i++)
+    {
+        Computer c = comp.at(i);
+        QString cId = QString::number(c.id);
+        QString cName = QString::fromStdString(c.name);
+        ui->disconnectedComputers->setItem(i,0,new QTableWidgetItem(cId));
+        ui->disconnectedComputers->setItem(i,1,new QTableWidgetItem(cName));
+    }
+
+    ui->disconnectedComputers->setSortingEnabled(true);
+    ui->disconnectedComputers->sortByColumn(order, column);
+}
+
+void MainWindow::on_scientistTable_activated(const QModelIndex &index)
+{
+
+    qDebug() << "EVENT";
+    auto list = ui->scientistTable->selectedItems();
+    if(list.size() == 0) // nothing selected
+    {
+        selectedScientist = -1;
+    }
+    else // we use only the first item
+    {
+        auto item = ui->scientistTable->item(list.at(0)->row(),0);
+        selectedScientist = item->text().toInt();
+    }
+    displayConnectedComputers();
+    displayDisconnectedComputers();
 }
