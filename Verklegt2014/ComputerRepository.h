@@ -2,7 +2,7 @@
 #include <QtSql>
 #include <vector>
 #include "Sort.h"
-#include "computer.h"
+#include "Computer.h"
 
 class ComputerRepository
 {

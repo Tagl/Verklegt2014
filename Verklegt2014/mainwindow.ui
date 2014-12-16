@@ -38,7 +38,7 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QTableWidget" name="tableWidget">
+         <widget class="QTableWidget" name="scientistTable">
           <column>
            <property name="text">
             <string>ID</string>
@@ -79,28 +79,21 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QPushButton" name="AddScientist">
+           <widget class="QPushButton" name="addScientist">
             <property name="text">
              <string>Add Scientist</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="EditScientist">
-            <property name="text">
-             <string>Edit Scientist</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="RemoveScientist">
+           <widget class="QPushButton" name="removeScientist">
             <property name="text">
              <string>Remove Scientist</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit">
+           <widget class="QLineEdit" name="searchScientist">
             <property name="readOnly">
              <bool>false</bool>
             </property>
@@ -119,7 +112,7 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="QTableWidget" name="tableWidget_2">
+         <widget class="QTableWidget" name="computerTable">
           <column>
            <property name="text">
             <string>ID</string>

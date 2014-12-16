@@ -104,6 +104,13 @@ Date::Date(const int y, const int m, const int d)
     setDay(d);
 }
 
+Date::Date(QDate d)
+{
+    setYear(d.year());
+    setMonth(d.month());
+    setDay(d.day());
+}
+
 Days Date::getDayOfWeek(const int day, const int month, const int year)
 {
 	int w = day + (int)(2.6*((month+9)%12+1)-0.2) + 5*(year%4) + 4*(year%100) + 6*(year%400); // Gaussian method

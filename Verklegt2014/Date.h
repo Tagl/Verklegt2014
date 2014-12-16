@@ -4,6 +4,8 @@
 #include <string>
 #include <fstream>
 
+#define ALIVE Date(0,0,0)
+
 enum Months
 {
     Jan = 1,
@@ -69,6 +71,7 @@ public:
     bool isValid();
 
     Date(const int y = 0, const int m = 0, const int d = 0);
+    Date(QDate d);
 
     static Date fromString(const QString s);
     static Days getDayOfWeek(const int day, const int month, const int year);
