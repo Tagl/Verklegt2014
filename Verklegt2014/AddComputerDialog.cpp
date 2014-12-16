@@ -1,5 +1,6 @@
 #include "AddComputerDialog.h"
 #include "ui_AddComputerDialog.h"
+#include "mainwindow.h"
 #include <qDebug>
 
 AddComputerDialog::AddComputerDialog(MainWindow *parent) :
@@ -15,16 +16,6 @@ AddComputerDialog::~AddComputerDialog()
     delete ui;
 }
 
-void AddComputerDialog::on_Name_textChanged(const QString &arg1)
-{
-    //qDebug() << ui->Name->text();
-    // test lala
-}
-
-void AddComputerDialog::on_ComputerType_textChanged(const QString &arg1)
-{
-   // qDebug() << ui->ComputerType->text();
-}
 
 void AddComputerDialog::on_buttonBox_accepted()
 {

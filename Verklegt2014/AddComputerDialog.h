@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QDialog>
-#include "MainWindow.h"
+#include "Mainwindow.h"
 
 namespace Ui {
 class AddComputerDialog;
@@ -16,10 +16,6 @@ public:
     ~AddComputerDialog();
 
 private slots:
-    void on_Name_textChanged(const QString &arg1);
-
-    void on_ComputerType_textChanged(const QString &arg1);
-
     void on_buttonBox_accepted();
 
     void on_wasMade_stateChanged(int arg1);
