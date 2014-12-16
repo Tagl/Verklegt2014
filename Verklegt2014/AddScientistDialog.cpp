@@ -13,7 +13,7 @@ AddScientistDialog::~AddScientistDialog()
     delete ui;
 }
 
-void AddComputerDialog::on_buttonBox_accepted()
+void AddScientistDialog::on_buttonBox_accepted()
 {
     Person p;
     p.firstname = ui->FirstName->text().toStdString();
