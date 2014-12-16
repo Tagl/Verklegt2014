@@ -19,6 +19,9 @@ public:
 
 
 private slots:
+    void on_searchScientist_textChanged(const QString &arg1);
+
+    void on_tabWidget_currentChanged(int index);
 
 private:
     Ui::MainWindow *ui;

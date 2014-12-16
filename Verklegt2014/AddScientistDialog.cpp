@@ -16,18 +16,18 @@ AddScientistDialog::~AddScientistDialog()
 
 void AddScientistDialog::on_FirstName_textChanged(const QString &arg1)
 {
-    qDebug() << ui->FirstName->text();
+    //qDebug() << ui->FirstName->text();
 
 }
 
 void AddScientistDialog::on_SurName_textChanged(const QString &arg1)
 {
-    qDebug() << ui->SurName->text();
+    //qDebug() << ui->SurName->text();
 
 }
 
 void AddScientistDialog::on_Description_textChanged(const QString &arg1)
 {
-    qDebug() << ui->Description->text();
+    //qDebug() << ui->Description->text();
 
 }

@@ -4,6 +4,8 @@
 #include <string>
 #include <fstream>
 
+#define ALIVE Date(0,0,0)
+
 enum Months
 {
     Jan = 1,

@@ -5,8 +5,6 @@
 #include "ComputerService.h"
 #include "RelationService.h"
 
-#define ALIVE Date(0,0,0)
-
 class ConsoleUI
 {
 private:
