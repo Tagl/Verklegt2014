@@ -14,7 +14,6 @@ public:
 
     void add(const Computer c);
     void remove(const int id);
-
     std::vector<Computer> getComputers();
 
     std::string getQuery();
