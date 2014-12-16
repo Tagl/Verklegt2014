@@ -30,6 +30,8 @@ private slots:
 
     void on_removeScientist_clicked();
 
+    void on_AddComputer_clicked();
+
 private:
     Ui::MainWindow *ui;
     Database db;

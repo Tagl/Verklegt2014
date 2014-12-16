@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "AddScientistDialog.h"
+#include "AddComputerDialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -8,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     displayScientists();
+    displayComputers();
 }
 
 MainWindow::~MainWindow()
@@ -23,6 +25,7 @@ void MainWindow::on_searchScientist_textChanged(const QString &arg1)
 
 void MainWindow::displayComputers()
 {
+    ui->computerTable->setSortingEnabled(false);
     std::vector<Computer> comp = computerService.getComputers();
 
     ui->computerTable->setRowCount(comp.size());
@@ -52,6 +55,7 @@ void MainWindow::displayComputers()
 
 void MainWindow::displayScientists()
 {
+    ui->scientistTable->setSortingEnabled(false);
     std::vector<Person> people = personService.getPeople();
 
     ui->scientistTable->setRowCount(people.size());
@@ -102,4 +106,12 @@ void MainWindow::on_removeScientist_clicked()
     {
         QTableWidgetItem* item = list.at(i);
     }
+}
+
+void MainWindow::on_AddComputer_clicked()
+{
+    AddComputerDialog a(this);
+    a.setModal(true);
+    a.exec();
+    displayComputers();
 }

@@ -35,33 +35,25 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QCheckBox" name="wasMade">
      <property name="text">
       <string>Was the computer made?</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="WasItMade">
-     <item>
-      <property name="text">
-       <string>No</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Yes</string>
-      </property>
-     </item>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="YearBuilt">
-     <property name="text">
-      <string/>
+    <widget class="QSpinBox" name="yearBuilt">
+     <property name="enabled">
+      <bool>false</bool>
      </property>
-     <property name="placeholderText">
-      <string>Year built</string>
+     <property name="minimum">
+      <number>-100000</number>
+     </property>
+     <property name="maximum">
+      <number>100000</number>
+     </property>
+     <property name="value">
+      <number>2014</number>
      </property>
     </widget>
    </item>
