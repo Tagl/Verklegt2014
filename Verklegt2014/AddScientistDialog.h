@@ -15,9 +15,10 @@ public:
     explicit AddScientistDialog(MainWindow *parent = 0);
     ~AddScientistDialog();
 
-    void on_buttonBox_accepted();
-
     void on_isAlive_stateChanged(int arg1);
+
+private slots:
+    void on_buttonBox_accepted();
 
 private:
     Ui::AddScientistDialog *ui;
