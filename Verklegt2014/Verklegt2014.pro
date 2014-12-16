@@ -10,6 +10,7 @@ QT       += sql
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Verklegt2014
+CONFIG   += c++11
 CONFIG   += console
 CONFIG   -= app_bundle
 

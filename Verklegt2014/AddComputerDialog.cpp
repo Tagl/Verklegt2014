@@ -17,13 +17,13 @@ AddComputerDialog::~AddComputerDialog()
 
 void AddComputerDialog::on_Name_textChanged(const QString &arg1)
 {
-    qDebug() << ui->Name->text();
+    //qDebug() << ui->Name->text();
     // test lala
 }
 
 void AddComputerDialog::on_ComputerType_textChanged(const QString &arg1)
 {
-    qDebug() << ui->ComputerType->text();
+   // qDebug() << ui->ComputerType->text();
 }
 
 void AddComputerDialog::on_buttonBox_accepted()
