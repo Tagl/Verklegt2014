@@ -27,6 +27,16 @@ std::vector<Person> PersonService::getPeople()
 	return repo.getPeople(sortType, sortOrder, searchQuery);
 }
 
+std::vector<Person> PersonService::getConnected(int cid)
+{
+    return repo.getAllConnected(cid);
+}
+
+std::vector<Person> PersonService::getDisconnected(int cid)
+{
+    return repo.getAllDisconnected(cid);
+}
+
 std::string PersonService::getQuery()
 {
 	return searchQuery;

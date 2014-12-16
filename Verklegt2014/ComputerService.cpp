@@ -24,6 +24,16 @@ std::vector<Computer> ComputerService::getComputers()
     return repo.getComputers(sortType, sortOrder, searchQuery);
 }
 
+std::vector<Computer> ComputerService::getConnected(int pid)
+{
+    return repo.getAllConnected(pid);
+}
+
+std::vector<Computer> ComputerService::getDisconnected(int pid)
+{
+    return repo.getAllDisconnected(pid);
+}
+
 std::string ComputerService::getQuery()
 {
     return searchQuery;

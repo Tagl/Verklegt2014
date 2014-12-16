@@ -34,10 +34,14 @@ private slots:
 
     void on_RemoveComputer_clicked();
 
+    void on_scientistTable_clicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     Database db;
-
+    int selectedScientist, selectedComputer;
     void displayScientists();
     void displayComputers();
+    void displayConnectedComputers();
+    void displayDisconnectedComputers();
 };

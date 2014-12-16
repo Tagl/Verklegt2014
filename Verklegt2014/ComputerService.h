@@ -15,6 +15,8 @@ public:
     void add(const Computer c);
     void remove(const int id);
     std::vector<Computer> getComputers();
+    std::vector<Computer> getConnected(int pid);
+    std::vector<Computer> getDisconnected(int pid);
 
     std::string getQuery();
     void setQuery(const std::string value);

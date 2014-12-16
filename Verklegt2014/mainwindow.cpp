@@ -150,6 +150,19 @@ void MainWindow::on_RemoveComputer_clicked()
 
 void MainWindow::on_scientistTable_clicked(const QModelIndex &index)
 {
+    qDebug() << "EVENT";
+    auto list = ui->scientistTable->selectedItems();
+    if(list.size() == 0) // nothing selected
+    {
+        selectedScientist = -1;
+    }
+    else // we use only the first item
+    {
+        auto item = ui->scientistTable->item(list.at(0)->row(),0);
+        selectedScientist = item->text().toInt();
+    }
+    displayConnectedComputers();
+    displayDisconnectedComputers();
 }
 
 void MainWindow::displayConnectedComputers()
@@ -199,22 +212,4 @@ void MainWindow::displayDisconnectedComputers()
 
     ui->disconnectedComputers->setSortingEnabled(true);
     ui->disconnectedComputers->sortByColumn(order, column);
-}
-
-void MainWindow::on_scientistTable_activated(const QModelIndex &index)
-{
-
-    qDebug() << "EVENT";
-    auto list = ui->scientistTable->selectedItems();
-    if(list.size() == 0) // nothing selected
-    {
-        selectedScientist = -1;
-    }
-    else // we use only the first item
-    {
-        auto item = ui->scientistTable->item(list.at(0)->row(),0);
-        selectedScientist = item->text().toInt();
-    }
-    displayConnectedComputers();
-    displayDisconnectedComputers();
 }
