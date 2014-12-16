@@ -18,11 +18,6 @@ AddScientistDialog::~AddScientistDialog()
     delete ui;
 }
 
-void AddScientistDialog::on_isAlive_stateChanged(int arg1)
-{
-    ui->DoD->setEnabled(!arg1);
-}
-
 void AddScientistDialog::on_buttonBox_accepted()
 {
     Person p;
@@ -33,4 +28,9 @@ void AddScientistDialog::on_buttonBox_accepted()
     p.dod = ui->isAlive->checkState() == Qt::Checked ? Date() : Date(ui->DoD->date());
     p.description = ui->Description->toPlainText().toStdString();
     main->personService.add(p);
+}
+
+void AddScientistDialog::on_isAlive_stateChanged(int arg1)
+{
+    ui->DoD->setEnabled(!arg1);
 }
