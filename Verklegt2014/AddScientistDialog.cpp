@@ -1,33 +1,34 @@
 #include "AddScientistDialog.h"
 #include "ui_AddScientistDialog.h"
+#include <qDebug>
 
-AddScientistDialog::AddScientistDialog(QWidget *parent) :
+AddScientistDialog::AddScientistDialog(MainWindow *parent) :
     QDialog(parent),
+    main(parent),
     ui(new Ui::AddScientistDialog)
 {
     ui->setupUi(this);
+    ui->DoB->setMinimumDate(QDate(1,1,1));
+    ui->DoD->setMinimumDate(QDate(1,1,1));
 }
 
 AddScientistDialog::~AddScientistDialog()
 {
-
     delete ui;
 }
-
-void AddScientistDialog::on_FirstName_textChanged(const QString &arg1)
+void AddScientistDialog::on_buttonBox_accepted()
 {
-    //qDebug() << ui->FirstName->text();
-
+    Person p;
+    p.firstname = ui->FirstName->text().toStdString();
+    p.surname = ui->SurName->text().toStdString();
+    p.gender = ui->Gender->currentText() == "Male" ? MALE : FEMALE;
+    p.dob = Date(ui->DoB->date());
+    p.dod = ui->isAlive->checkState() == Qt::Checked ? Date() : Date(ui->DoD->date());
+    p.description = ui->Description->text().toStdString();
+    main->personService.add(p);
 }
 
-void AddScientistDialog::on_SurName_textChanged(const QString &arg1)
+void AddScientistDialog::on_isAlive_stateChanged(int arg1)
 {
-    //qDebug() << ui->SurName->text();
-
-}
-
-void AddScientistDialog::on_Description_textChanged(const QString &arg1)
-{
-    //qDebug() << ui->Description->text();
-
+    ui->DoD->setEnabled(!arg1);
 }

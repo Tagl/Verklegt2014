@@ -17,13 +17,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_searchScientist_textChanged(const QString &arg1)
 {
-    pserv.setQuery(arg1.toStdString());
+    personService.setQuery(arg1.toStdString());
     displayScientists();
 }
 
 void MainWindow::displayComputers()
 {
-    std::vector<Computer> comp = cserv.getComputers();
+    std::vector<Computer> comp = computerService.getComputers();
 
     ui->computerTable->setRowCount(comp.size());
     auto order = ui->computerTable->horizontalHeader()->sortIndicatorOrder();
@@ -52,7 +52,7 @@ void MainWindow::displayComputers()
 
 void MainWindow::displayScientists()
 {
-    std::vector<Person> people = pserv.getPeople();
+    std::vector<Person> people = personService.getPeople();
 
     ui->scientistTable->setRowCount(people.size());
     auto order = ui->scientistTable->horizontalHeader()->sortIndicatorOrder();
@@ -84,7 +84,7 @@ void MainWindow::displayScientists()
 void MainWindow::on_tabWidget_currentChanged(int index)
 {
     if(index == 0) displayScientists();
-    else if (index == -1) displayComputers();
+    else if (index == 1) displayComputers();
 }
 
 void MainWindow::on_addScientist_clicked()

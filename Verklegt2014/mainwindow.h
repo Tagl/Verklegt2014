@@ -18,6 +18,8 @@ public:
     ~MainWindow();
 
 
+    PersonService personService;
+    ComputerService computerService;
 
 private slots:
     void on_searchScientist_textChanged(const QString &arg1);
@@ -29,8 +31,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Database db;
-    PersonService pserv;
-    ComputerService cserv;
 
     void displayScientists();
     void displayComputers();

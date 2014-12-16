@@ -29,3 +29,8 @@ void AddComputerDialog::on_Description_textChanged(const QString &arg1)
 {
     qDebug() << ui->Description->text();
 }
+
+void AddComputerDialog::on_buttonBox_accepted()
+{
+
+}

@@ -21,6 +21,8 @@ private slots:
 
     void on_Description_textChanged(const QString &arg1);
 
+    void on_buttonBox_accepted();
+
 private:
     Ui::AddComputerDialog *ui;
 };
