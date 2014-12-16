@@ -5,6 +5,7 @@
 #include <sstream>
 #include <iostream>
 #include "Database.h"
+#include <QDebug>
 PersonRepository::PersonRepository()
 {
 
@@ -75,7 +76,6 @@ void PersonRepository::remove(int id)
 
     query.prepare(QString("DELETE FROM persons WHERE id=:id;"));
     query.bindValue(":id", id);
-
     query.exec();
 }
 

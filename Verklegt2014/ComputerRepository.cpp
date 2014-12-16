@@ -73,7 +73,7 @@ void ComputerRepository::remove(int id)
     if(!Database::getCurrent()->prepare()) return;
     QSqlQuery query;
 
-    query.prepare(QString("DELETE FROM Computers WHERE id=:id;"));
+    query.prepare("DELETE FROM Computers WHERE id=:id;");
     query.bindValue(":id", id);
 
     query.exec();

@@ -102,10 +102,17 @@ void MainWindow::on_addScientist_clicked()
 void MainWindow::on_removeScientist_clicked()
 {
     auto list = ui->scientistTable->selectedItems();
+    std::vector<int> rows;
     for(int i = 0; i < list.size(); i++)
     {
         QTableWidgetItem* item = list.at(i);
+        int row = item->row();
+        if(std::find(rows.begin(), rows.end(), row) != rows.end()) continue;
+        else rows.push_back(row);
+        QTableWidgetItem* id = ui->scientistTable->item(row,0);
+        personService.remove(id->text().toInt());
     }
+    displayScientists();
 }
 
 void MainWindow::on_AddComputer_clicked()
@@ -113,5 +120,21 @@ void MainWindow::on_AddComputer_clicked()
     AddComputerDialog a(this);
     a.setModal(true);
     a.exec();
+    displayComputers();
+}
+
+void MainWindow::on_RemoveComputer_clicked()
+{
+    auto list = ui->computerTable->selectedItems();
+    std::vector<int> rows;
+    for(int i = 0; i < list.size(); i++)
+    {
+        QTableWidgetItem* item = list.at(i);
+        int row = item->row();
+        if(std::find(rows.begin(), rows.end(), row) != rows.end()) continue;
+        else rows.push_back(row);
+        QTableWidgetItem* id = ui->computerTable->item(row,0);
+        computerService.remove(id->text().toInt());
+    }
     displayComputers();
 }

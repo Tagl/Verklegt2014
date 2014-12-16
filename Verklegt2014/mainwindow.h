@@ -32,6 +32,8 @@ private slots:
 
     void on_AddComputer_clicked();
 
+    void on_RemoveComputer_clicked();
+
 private:
     Ui::MainWindow *ui;
     Database db;
