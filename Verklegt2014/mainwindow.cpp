@@ -416,3 +416,18 @@ void MainWindow::on_scientistTable_cellChanged(int row, int column)
     personService.update(p);
     displayScientists();
 }
+
+void MainWindow::on_computerTable_cellChanged(int row, int column)
+{
+    if(!userEditing) return;
+    auto item = ui->computerTable->item(row,column);
+    Computer c;
+    c.id = ui->computerTable->item(row,0)->text().toInt();
+    c.name = ui->computerTable->item(row,1)->text().toStdString();
+    c.computerType = ui->computerTable->item(row,2)->text().toStdString();
+    c.wasMade = ui->computerTable->item(row,3)->text().toLower().startsWith('y') ? YES : NO;
+    c.yearBuilt = ui->computerTable->item(row,4)->text().toInt();
+    c.description = ui->computerTable->item(row,5)->text().toStdString();
+    computerService.update(c);
+    displayComputers();
+}

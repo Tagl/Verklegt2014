@@ -14,6 +14,7 @@ public:
 
     void add(const Computer c);
     void remove(const int id);
+    void update(const Computer c);
     std::vector<Computer> getComputers();
     std::vector<Computer> getConnected(int pid);
     std::vector<Computer> getDisconnected(int pid);

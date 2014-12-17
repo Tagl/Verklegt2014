@@ -18,7 +18,6 @@ TEMPLATE = app
 
 
 SOURCES += \
-    ConsoleUI.cpp \
     Date.cpp \
     Person.cpp \
     PersonRepository.cpp \
@@ -35,7 +34,6 @@ SOURCES += \
     MainWindow.cpp
 
 HEADERS += \
-    ConsoleUI.h \
     Date.h \
     Person.h \
     PersonRepository.h \

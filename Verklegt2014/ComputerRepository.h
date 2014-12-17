@@ -22,6 +22,7 @@ public:
 
     void add(Computer c);
     void remove(int id);
+    void update(Computer c);
 
     friend std::ostream& operator<<(std::ostream& out, ComputerSortTypes st);
 

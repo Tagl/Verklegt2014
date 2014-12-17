@@ -9,15 +9,21 @@ ComputerService::ComputerService()
     searchQuery = "";
 }
 
-void ComputerService::add(const Computer p)
+void ComputerService::add(const Computer c)
 {
-    repo.add(p);
+    repo.add(c);
 }
 
 void ComputerService::remove(const int id)
 {
     repo.remove(id);
 }
+
+void ComputerService::update(const Computer c)
+{
+    repo.update(c);
+}
+
 
 std::vector<Computer> ComputerService::getComputers()
 {

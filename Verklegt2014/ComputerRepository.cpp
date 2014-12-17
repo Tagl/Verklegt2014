@@ -127,6 +127,30 @@ void ComputerRepository::remove(int id)
     query.exec();
 }
 
+void ComputerRepository::update(Computer c)
+{
+    if(!Database::getCurrent()->prepare()) return;
+    QSqlQuery query;
+
+    std::string wasMade;
+    std::ostringstream convert;
+
+    convert << c.wasMade;
+
+    wasMade = convert.str();
+
+
+    query.prepare("UPDATE Computers SET Name = :name, ComputerType = :computertype, WasMade = :wasmade, YearBuilt = :yearbuilt, Description = :description WHERE ID = :id");
+    query.bindValue(":id", c.id);
+    query.bindValue(":name", QString::fromStdString(c.name));
+    query.bindValue(":computertype", QString::fromStdString(c.computerType));
+    query.bindValue(":wasmade", QChar(wasMade.at(0)));
+    query.bindValue(":yearbuilt", c.yearBuilt);
+    query.bindValue(":description", QString::fromStdString(c.description));
+
+    query.exec();
+}
+
 const std::string ComputerRepository::sortNames[] = {"ID", "Name", "ComputerType", "WasMade", "YearBuilt"};
 
 std::ostream& operator<<(std::ostream& out, ComputerSortTypes st)
