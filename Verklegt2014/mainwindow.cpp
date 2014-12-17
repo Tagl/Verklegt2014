@@ -29,6 +29,7 @@ void MainWindow::on_searchScientist_textChanged(const QString &arg1)
 
 void MainWindow::displayComputers()
 {
+    userEditing = false;
     ui->computerTable->setSortingEnabled(false);
     std::vector<Computer> comp = computerService.getComputers();
 
@@ -46,6 +47,7 @@ void MainWindow::displayComputers()
         QString cDesc = QString::fromStdString(c.description);
 
         ui->computerTable->setItem(i,0,new QTableWidgetItem(cId));
+        ui->computerTable->item(i,0)->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable); // ID should not be editable
         ui->computerTable->setItem(i,1,new QTableWidgetItem(cName));
         ui->computerTable->setItem(i,2,new QTableWidgetItem(cType));
         ui->computerTable->setItem(i,3,new QTableWidgetItem(cMade));
@@ -55,10 +57,12 @@ void MainWindow::displayComputers()
 
     ui->computerTable->setSortingEnabled(true);
     ui->computerTable->sortByColumn(order, column);
+    userEditing = true;
 }
 
 void MainWindow::displayScientists()
 {
+    userEditing = false;
     ui->scientistTable->setSortingEnabled(false);
     std::vector<Person> people = personService.getPeople();
 
@@ -77,6 +81,7 @@ void MainWindow::displayScientists()
         QString sDesc = QString::fromStdString(p.description);
 
         ui->scientistTable->setItem(i,0,new QTableWidgetItem(sId));
+        ui->scientistTable->item(i,0)->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable); // ID should not be editable
         ui->scientistTable->setItem(i,1,new QTableWidgetItem(sFirstName));
         ui->scientistTable->setItem(i,2,new QTableWidgetItem(sSurname));
         ui->scientistTable->setItem(i,3,new QTableWidgetItem(sGender));
@@ -87,6 +92,7 @@ void MainWindow::displayScientists()
 
     ui->scientistTable->setSortingEnabled(true);
     ui->scientistTable->sortByColumn(order, column);
+    userEditing = true;
 }
 
 void MainWindow::on_tabWidget_currentChanged(int index)
@@ -116,7 +122,7 @@ void MainWindow::on_removeScientist_clicked()
     {
         QTableWidgetItem* item = list.at(i);
         int row = item->row();
-        if(std::find(rows.begin(), rows.end(), row) != rows.end()) continue;
+        if(std::find(rows.begin(), rows.end(), row) != rows.end()) continue; // remove each ID only once to reduce sql queries
         else rows.push_back(row);
         QTableWidgetItem* id = ui->scientistTable->item(row,0);
         personService.remove(id->text().toInt());
@@ -181,8 +187,14 @@ void MainWindow::displayConnectedComputers()
         QString cId = QString::number(c.id);
         QString cName = QString::fromStdString(c.name);
 
-        ui->connectedComputers->setItem(i,0,new QTableWidgetItem(cId));
-        ui->connectedComputers->setItem(i,1,new QTableWidgetItem(cName));
+        // Nothing should be editable
+        QTableWidgetItem* tId = new QTableWidgetItem(cId);
+        tId->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
+        ui->connectedComputers->setItem(i,0,tId);
+
+        QTableWidgetItem* tName = new QTableWidgetItem(cName);
+        tName->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
+        ui->connectedComputers->setItem(i,1,tName);
     }
 
     ui->connectedComputers->setSortingEnabled(true);
@@ -205,8 +217,15 @@ void MainWindow::displayDisconnectedComputers()
         Computer c = comp.at(i);
         QString cId = QString::number(c.id);
         QString cName = QString::fromStdString(c.name);
-        ui->disconnectedComputers->setItem(i,0,new QTableWidgetItem(cId));
-        ui->disconnectedComputers->setItem(i,1,new QTableWidgetItem(cName));
+
+        // Nothing should be editable
+        QTableWidgetItem* tId = new QTableWidgetItem(cId);
+        tId->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
+        ui->disconnectedComputers->setItem(i,0,tId);
+
+        QTableWidgetItem* tName = new QTableWidgetItem(cName);
+        tName->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
+        ui->disconnectedComputers->setItem(i,1,tName);
     }
 
     ui->disconnectedComputers->setSortingEnabled(true);
@@ -232,9 +251,18 @@ void MainWindow::displayConnectedScientists()
         QString pFName = QString::fromStdString(p.firstname);
         QString pSName = QString::fromStdString(p.surname);
 
-        ui->connectedScientists->setItem(i,0,new QTableWidgetItem(pId));
-        ui->connectedScientists->setItem(i,1,new QTableWidgetItem(pFName));
-        ui->connectedScientists->setItem(i,2,new QTableWidgetItem(pSName));
+        // Nothing should be editable
+        QTableWidgetItem* tId = new QTableWidgetItem(pId);
+        tId->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
+        ui->connectedScientists->setItem(i,0,tId);
+
+        QTableWidgetItem* tFName = new QTableWidgetItem(pFName);
+        tFName->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
+        ui->connectedScientists->setItem(i,1,tFName);
+
+        QTableWidgetItem* tSName = new QTableWidgetItem(pSName);
+        tSName->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
+        ui->connectedScientists->setItem(i,2,tSName);
     }
 
     ui->connectedScientists->setSortingEnabled(true);
@@ -259,9 +287,18 @@ void MainWindow::displayDisconnectedScientists()
         QString pFName = QString::fromStdString(p.firstname);
         QString pSName = QString::fromStdString(p.surname);
 
-        ui->disconnectedScientists->setItem(i,0,new QTableWidgetItem(pId));
-        ui->disconnectedScientists->setItem(i,1,new QTableWidgetItem(pFName));
-        ui->disconnectedScientists->setItem(i,2,new QTableWidgetItem(pSName));
+        // Nothing should be editable
+        QTableWidgetItem* tId = new QTableWidgetItem(pId);
+        tId->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
+        ui->disconnectedScientists->setItem(i,0,tId);
+
+        QTableWidgetItem* tFName = new QTableWidgetItem(pFName);
+        tFName->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
+        ui->disconnectedScientists->setItem(i,1,tFName);
+
+        QTableWidgetItem* tSName = new QTableWidgetItem(pSName);
+        tSName->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
+        ui->disconnectedScientists->setItem(i,2,tSName);
     }
 
     ui->disconnectedScientists->setSortingEnabled(true);
@@ -362,4 +399,20 @@ void MainWindow::on_disconnectScientist_clicked()
 
     displayConnectedScientists();
     displayDisconnectedScientists();
+}
+
+void MainWindow::on_scientistTable_cellChanged(int row, int column)
+{
+    if(!userEditing) return;
+    auto item = ui->scientistTable->item(row,column);
+    Person p;
+    p.id = ui->scientistTable->item(row,0)->text().toInt();
+    p.firstname = ui->scientistTable->item(row,1)->text().toStdString();
+    p.surname = ui->scientistTable->item(row,2)->text().toStdString();
+    p.gender = ui->scientistTable->item(row,3)->text().toLower().startsWith('f') ? FEMALE : MALE;
+    p.dob = Date::fromString(ui->scientistTable->item(row,4)->text());
+    p.dod = Date::fromString(ui->scientistTable->item(row,5)->text());
+    p.description = ui->scientistTable->item(row,6)->text().toStdString();
+    personService.update(p);
+    displayScientists();
 }

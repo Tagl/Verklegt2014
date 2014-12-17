@@ -48,10 +48,13 @@ private slots:
 
     void on_disconnectScientist_clicked();
 
+    void on_scientistTable_cellChanged(int row, int column);
+
 private:
     Ui::MainWindow *ui;
     Database db;
     int selectedScientist, selectedComputer;
+    bool userEditing;
     void displayScientists();
     void displayComputers();
     void displayConnectedComputers();

@@ -15,6 +15,7 @@ public:
 
 	void add(const Person p);
     void remove(const int id);
+    void update(const Person p);
 	std::vector<Person> getPeople();
     std::vector<Person> getConnected(int cid);
     std::vector<Person> getDisconnected(int cid);

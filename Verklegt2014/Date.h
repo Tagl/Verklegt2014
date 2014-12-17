@@ -68,6 +68,8 @@ public:
 
     QDate toQDate();
 
+    std::string toString();
+
     bool isValid();
 
     Date(const int y = 0, const int m = 0, const int d = 0);

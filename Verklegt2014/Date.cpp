@@ -138,6 +138,11 @@ Date Date::fromString(const QString s)
     return d;
 }
 
+std::string Date::toString()
+{
+    return (QString(_day < 10 ? "0" : "") + QString::number(_day) + QString("/") + QString(_month < 10 ? "0" : "") + QString::number(_month) + QString("/") + QString::number(_year)).toStdString();
+}
+
 const std::string Date::dayNames[] = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
 const std::string Date::monthNames[] = {"January","February","March","April","May","July","June","August","September","October","November","December"};
 

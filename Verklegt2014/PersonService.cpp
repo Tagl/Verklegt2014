@@ -22,6 +22,11 @@ void PersonService::remove(const int id)
     repo.remove(id);
 }
 
+void PersonService::update(const Person p)
+{
+    repo.update(p);
+}
+
 std::vector<Person> PersonService::getPeople()
 {
 	return repo.getPeople(sortType, sortOrder, searchQuery);

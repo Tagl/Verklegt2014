@@ -136,6 +136,29 @@ void PersonRepository::remove(int id)
     query.exec();
 }
 
+void PersonRepository::update(Person p)
+{
+    if(!Database::getCurrent()->prepare()) return;
+    QSqlQuery query;
+
+    std::string gender;
+    std::ostringstream convert;
+
+    convert << p.gender;
+
+    gender = convert.str();
+    query.prepare("UPDATE persons SET FirstName = :firstname, SurName = :surname, DoB = :dob, DoD = :dod, Gender = :gender, Description = :description WHERE ID = :id");
+    query.bindValue(":id", p.id);
+    query.bindValue(":firstname", QString::fromStdString(p.firstname));
+    query.bindValue(":surname", QString::fromStdString(p.surname));
+    query.bindValue(":dob", p.dob.toQDate());
+    query.bindValue(":dod", p.dod.toQDate());
+    query.bindValue(":gender",QChar(gender.at(0)));
+    query.bindValue(":description", QString::fromStdString(p.description));
+
+    query.exec();
+}
+
 const std::string PersonRepository::sortNames[] = {"ID", "Firstname", "Surname", "Gender", "DoB", "DoD"};
 
 std::ostream& operator<<(std::ostream& out, PersonSortTypes st)

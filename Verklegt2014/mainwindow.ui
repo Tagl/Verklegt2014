@@ -30,7 +30,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="sciTab">
        <attribute name="title">
@@ -125,14 +125,14 @@
             <item>
              <widget class="QPushButton" name="connectToComputer">
               <property name="text">
-               <string>Connect</string>
+               <string>Connect »</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QPushButton" name="disconnectComputer">
               <property name="text">
-               <string>Disconnect</string>
+               <string>« Disconnect</string>
               </property>
              </widget>
             </item>
@@ -246,14 +246,14 @@
             <item>
              <widget class="QPushButton" name="connectScientist">
               <property name="text">
-               <string>Connect</string>
+               <string>Connect »</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QPushButton" name="disconnectScientist">
               <property name="text">
-               <string>Disconnect</string>
+               <string>« Disconnect</string>
               </property>
              </widget>
             </item>
