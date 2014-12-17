@@ -1,5 +1,5 @@
 #pragma once
-#include "RelationRepository.h"
+#include "../Repositories/RelationRepository.h"
 
 class RelationService
 {

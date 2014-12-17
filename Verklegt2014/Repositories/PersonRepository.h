@@ -1,8 +1,8 @@
 #pragma once
 #include <QtSql>
 #include <vector>
-#include "Person.h"
-#include "Sort.h"
+#include "../Models/Person.h"
+#include "../Sort.h"
 
 
 

@@ -1,12 +1,7 @@
 #include <algorithm>
-#include <fstream>
 #include "PersonRepository.h"
-#include <Qstring>
 #include <sstream>
-#include <iostream>
-#include "Database.h"
-#include <QDebug>
-#include "Computer.h"
+#include "../Database.h"
 PersonRepository::PersonRepository()
 {
 

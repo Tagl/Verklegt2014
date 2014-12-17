@@ -18,38 +18,38 @@ TEMPLATE = app
 
 
 SOURCES += \
-    Date.cpp \
-    Person.cpp \
-    PersonRepository.cpp \
-    PersonService.cpp \
     Verklegt2014.cpp \
-    ComputerRepository.cpp \
-    ComputerService.cpp \
-    RelationRepository.cpp \
-    RelationService.cpp \
     Database.cpp \
-    AddScientistDialog.cpp \
-    AddComputerDialog.cpp \
-    Computer.cpp \
-    MainWindow.cpp
+    Repositories/ComputerRepository.cpp \
+    Repositories/PersonRepository.cpp \
+    Repositories/RelationRepository.cpp \
+    Services/ComputerService.cpp \
+    Services/PersonService.cpp \
+    Services/RelationService.cpp \
+    GUI/AddComputerDialog.cpp \
+    GUI/AddScientistDialog.cpp \
+    GUI/MainWindow.cpp \
+    Models/computer.cpp \
+    Models/Date.cpp \
+    Models/Person.cpp
 
 HEADERS += \
-    Date.h \
-    Person.h \
-    PersonRepository.h \
-    PersonService.h \
-    ComputerRepository.h \
-    ComputerService.h \
-    RelationRepository.h \
-    RelationService.h \
     Database.h \
     Sort.h \
-    AddScientistDialog.h \
-    AddComputerDialog.h \
-    Computer.h \
-    MainWindow.h
+    Repositories/ComputerRepository.h \
+    Repositories/PersonRepository.h \
+    Repositories/RelationRepository.h \
+    Services/ComputerService.h \
+    Services/PersonService.h \
+    Services/RelationService.h \
+    GUI/AddComputerDialog.h \
+    GUI/AddScientistDialog.h \
+    GUI/MainWindow.h \
+    Models/Computer.h \
+    Models/Date.h \
+    Models/Person.h
 
 FORMS += \
-    AddScientistDialog.ui \
-    AddComputerDialog.ui \
-    MainWindow.ui
+    GUI/AddComputerDialog.ui \
+    GUI/AddScientistDialog.ui \
+    GUI/MainWindow.ui

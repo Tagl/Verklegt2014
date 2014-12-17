@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->scientistTable->sortByColumn(0, Qt::AscendingOrder);
+    ui->scientistTable->sortByColumn(0, Qt::AscendingOrder); // set initial sorting to ID
     ui->computerTable->sortByColumn(0, Qt::AscendingOrder);
 
     displayScientists();
@@ -29,12 +29,12 @@ void MainWindow::on_searchScientist_textChanged(const QString &arg1)
 
 void MainWindow::displayComputers()
 {
-    userEditing = false;
+    userEditing = false; // prevent infinite loop with cellChanged events
     ui->computerTable->setSortingEnabled(false);
     std::vector<Computer> comp = computerService.getComputers();
 
     ui->computerTable->setRowCount(comp.size());
-    auto order = ui->computerTable->horizontalHeader()->sortIndicatorOrder();
+    auto order = ui->computerTable->horizontalHeader()->sortIndicatorOrder(); // user selected sorting, same in other display functions
     auto column = ui->computerTable->horizontalHeader()->sortIndicatorOrder();
     for(size_t i = 0; i < comp.size(); i++)
     {
@@ -55,11 +55,13 @@ void MainWindow::displayComputers()
         ui->computerTable->setItem(i,5,new QTableWidgetItem(cDesc));
     }
 
-    ui->computerTable->setSortingEnabled(true);
+    ui->computerTable->setSortingEnabled(true); // apply sorting after assigning values to prevent values being misplaced
     ui->computerTable->sortByColumn(order, column);
     userEditing = true;
 }
 
+
+// See above function for explanation
 void MainWindow::displayScientists()
 {
     userEditing = false;
@@ -97,13 +99,18 @@ void MainWindow::displayScientists()
 
 void MainWindow::on_tabWidget_currentChanged(int index)
 {
-    if(index == 0)
+    if(index == 0) // update tables based when tabs are switched
     {
         displayScientists();
         displayConnectedComputers();
         displayDisconnectedComputers();
     }
-    else if (index == 1) displayComputers();
+    else if (index == 1)
+    {
+        displayComputers();
+        displayConnectedScientists();
+        displayDisconnectedScientists();
+    }
 }
 
 void MainWindow::on_addScientist_clicked()
@@ -405,7 +412,7 @@ void MainWindow::on_scientistTable_cellChanged(int row, int column)
 {
     if(!userEditing) return;
     auto item = ui->scientistTable->item(row,column);
-    Person p;
+    Person p; // create the edited person
     p.id = ui->scientistTable->item(row,0)->text().toInt();
     p.firstname = ui->scientistTable->item(row,1)->text().toStdString();
     p.surname = ui->scientistTable->item(row,2)->text().toStdString();

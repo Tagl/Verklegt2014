@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "ComputerRepository.h"
+#include "../Repositories/ComputerRepository.h"
 
 class ComputerService
 {

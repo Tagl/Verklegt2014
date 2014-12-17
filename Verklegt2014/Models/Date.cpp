@@ -1,5 +1,4 @@
 #include "Date.h"
-#include <iomanip>
 
 // Day get and set
 int Date::getDay()

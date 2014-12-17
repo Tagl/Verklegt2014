@@ -1,10 +1,10 @@
 #pragma once
 
 #include <QMainWindow>
-#include "PersonService.h"
-#include "ComputerService.h"
-#include "RelationService.h"
-#include "Database.h"
+#include "../Services/PersonService.h"
+#include "../Services/ComputerService.h"
+#include "../Services/RelationService.h"
+#include "../Database.h"
 
 namespace Ui {
 class MainWindow;

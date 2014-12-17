@@ -1,9 +1,7 @@
 #include <algorithm>
-#include <fstream>
 #include "ComputerRepository.h"
-#include <Qstring>
 #include <sstream>
-#include "Database.h"
+#include "../Database.h"
 
 ComputerRepository::ComputerRepository()
 {
