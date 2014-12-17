@@ -30,7 +30,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="sciTab">
        <attribute name="title">
@@ -216,6 +216,66 @@
             <property name="placeholderText">
              <string>Search</string>
             </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QTableWidget" name="disconnectedScientists">
+            <column>
+             <property name="text">
+              <string>ID</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>First Name</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Surname</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <widget class="QPushButton" name="connectScientist">
+              <property name="text">
+               <string>Connect</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="disconnectScientist">
+              <property name="text">
+               <string>Disconnect</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="connectedScientists">
+            <column>
+             <property name="text">
+              <string>ID</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>First Name</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Surname</string>
+             </property>
+            </column>
            </widget>
           </item>
          </layout>
