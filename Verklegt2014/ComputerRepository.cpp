@@ -21,17 +21,15 @@ std::vector<Computer> ComputerRepository::getAllConnected(int pid)
 
     query.exec();
 
-    qDebug() << query.lastError().text();
-
     while(query.next())
     {
         Computer c = Computer();
-        c.id = query.value("b.ID").toInt();
-        c.name = query.value("b.Name").toString().toStdString();
-        c.computerType = query.value("b.ComputerType").toString().toStdString();
-        c.wasMade = query.value("b.WasMade").toString() == "Y" ? YES : NO;
-        c.yearBuilt = query.value("b.YearBuilt").toInt();
-        c.description = query.value("b.Description").toString().toStdString();
+        c.id = query.value("ID").toInt();
+        c.name = query.value("Name").toString().toStdString();
+        c.computerType = query.value("ComputerType").toString().toStdString();
+        c.wasMade = query.value("WasMade").toString() == "Y" ? YES : NO;
+        c.yearBuilt = query.value("YearBuilt").toInt();
+        c.description = query.value("Description").toString().toStdString();
         comp.push_back(c);
     }
     return comp;
@@ -43,12 +41,10 @@ std::vector<Computer> ComputerRepository::getAllDisconnected(int pid)
     if(!Database::getCurrent()->prepare()) return comp;
     QSqlQuery query;
 
-    query.prepare("SELECT * FROM Computers c WHERE c.id NOT IN (SELECT c_id FROM Connections b WHERE b.p_id = :id);");
+    query.prepare("SELECT * FROM Computers WHERE NOT EXISTS (SELECT * FROM Connections WHERE c_id = id AND p_id = :pid)");
     query.bindValue(":pid", pid);
 
     query.exec();
-
-    qDebug() << query.lastError().text();
 
     while(query.next())
     {

@@ -8,4 +8,5 @@ private:
 public:
     RelationService();
     void add(int pid, int cid);
+    void remove(int pid, int cid);
 };

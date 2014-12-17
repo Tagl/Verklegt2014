@@ -17,3 +17,15 @@ void RelationRepository::add(int pid, int cid)
 
     query.exec();
 }
+
+void RelationRepository::remove(int pid, int cid)
+{
+    if(!Database::getCurrent()->prepare()) return;
+    QSqlQuery query;
+
+    query.prepare("DELETE FROM Connections WHERE P_ID = :pid AND C_ID = :cid;");
+    query.bindValue(":pid", pid);
+    query.bindValue(":cid", cid);
+
+    query.exec();
+}

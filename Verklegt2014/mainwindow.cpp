@@ -140,7 +140,7 @@ void MainWindow::on_RemoveComputer_clicked()
     {
         QTableWidgetItem* item = list.at(i);
         int row = item->row();
-        if(std::find(rows.begin(), rows.end(), row) != rows.end()) continue;
+        if(std::find(rows.begin(), rows.end(), row) != rows.end()) continue; // remove each ID only once to reduce sql queries
         else rows.push_back(row);
         QTableWidgetItem* id = ui->computerTable->item(row,0);
         computerService.remove(id->text().toInt());
@@ -150,7 +150,6 @@ void MainWindow::on_RemoveComputer_clicked()
 
 void MainWindow::on_scientistTable_clicked(const QModelIndex &index)
 {
-    qDebug() << "EVENT";
     auto list = ui->scientistTable->selectedItems();
     if(list.size() == 0) // nothing selected
     {
@@ -212,4 +211,155 @@ void MainWindow::displayDisconnectedComputers()
 
     ui->disconnectedComputers->setSortingEnabled(true);
     ui->disconnectedComputers->sortByColumn(order, column);
+}
+
+
+void MainWindow::displayConnectedScientists()
+{
+    ui->connectedScientists->setRowCount(0);
+    if(selectedComputer == -1) return;
+
+    ui->connectedScientists->setSortingEnabled(false);
+    std::vector<Person> people = personService.getConnected(selectedComputer);
+
+    ui->connectedScientists->setRowCount(people.size());
+    auto order = ui->connectedScientists->horizontalHeader()->sortIndicatorOrder();
+    auto column = ui->connectedScientists->horizontalHeader()->sortIndicatorOrder();
+    for(size_t i = 0; i < people.size(); i++)
+    {
+        Person p = people.at(i);
+        QString pId = QString::number(p.id);
+        QString pFName = QString::fromStdString(p.firstname);
+        QString pSName = QString::fromStdString(p.surname);
+
+        ui->connectedScientists->setItem(i,0,new QTableWidgetItem(pId));
+        ui->connectedScientists->setItem(i,1,new QTableWidgetItem(pFName));
+        ui->connectedScientists->setItem(i,2,new QTableWidgetItem(pSName));
+    }
+
+    ui->connectedScientists->setSortingEnabled(true);
+    ui->connectedScientists->sortByColumn(order, column);
+}
+
+void MainWindow::displayDisconnectedScientists()
+{
+    ui->disconnectedScientists->setRowCount(0);
+    if(selectedComputer == -1) return;
+
+    ui->disconnectedScientists->setSortingEnabled(false);
+    std::vector<Person> people = personService.getDisconnected(selectedComputer);
+
+    ui->disconnectedScientists->setRowCount(people.size());
+    auto order = ui->disconnectedScientists->horizontalHeader()->sortIndicatorOrder();
+    auto column = ui->disconnectedScientists->horizontalHeader()->sortIndicatorOrder();
+    for(size_t i = 0; i < people.size(); i++)
+    {
+        Person p = people.at(i);
+        QString pId = QString::number(p.id);
+        QString pFName = QString::fromStdString(p.firstname);
+        QString pSName = QString::fromStdString(p.surname);
+
+        ui->disconnectedScientists->setItem(i,0,new QTableWidgetItem(pId));
+        ui->disconnectedScientists->setItem(i,1,new QTableWidgetItem(pFName));
+        ui->disconnectedScientists->setItem(i,2,new QTableWidgetItem(pSName));
+    }
+
+    ui->disconnectedScientists->setSortingEnabled(true);
+    ui->disconnectedScientists->sortByColumn(order, column);
+}
+
+void MainWindow::on_connectToComputer_clicked()
+{
+    if(selectedScientist == -1) return;
+
+    auto list = ui->disconnectedComputers->selectedItems();
+    std::vector<int> rows;
+    for(int i = 0; i < list.size(); i++)
+    {
+        QTableWidgetItem* item = list.at(i);
+        int row = item->row();
+        if(std::find(rows.begin(), rows.end(), row) != rows.end()) continue; // remove each ID only once to reduce sql queries
+        else rows.push_back(row);
+        QTableWidgetItem* id = ui->disconnectedComputers->item(row,0);
+        relationService.add(selectedScientist,id->text().toInt());
+    }
+
+    displayConnectedComputers();
+    displayDisconnectedComputers();
+}
+
+void MainWindow::on_disconnectComputer_clicked()
+{
+    if(selectedScientist == -1) return;
+
+    auto list = ui->connectedComputers->selectedItems();
+    std::vector<int> rows;
+    for(int i = 0; i < list.size(); i++)
+    {
+        QTableWidgetItem* item = list.at(i);
+        int row = item->row();
+        if(std::find(rows.begin(), rows.end(), row) != rows.end()) continue; // remove each ID only once to reduce sql queries
+        else rows.push_back(row);
+        QTableWidgetItem* id = ui->connectedComputers->item(row,0);
+        relationService.remove(selectedScientist,id->text().toInt());
+    }
+
+    displayConnectedComputers();
+    displayDisconnectedComputers();
+}
+
+void MainWindow::on_computerTable_clicked(const QModelIndex &index)
+{
+    auto list = ui->computerTable->selectedItems();
+    if(list.size() == 0) // nothing selected
+    {
+        selectedComputer = -1;
+    }
+    else // we use only the first item
+    {
+        auto item = ui->computerTable->item(list.at(0)->row(),0);
+        selectedComputer = item->text().toInt();
+    }
+    displayConnectedScientists();
+    displayDisconnectedScientists();
+}
+
+void MainWindow::on_connectScientist_clicked()
+{
+    if(selectedComputer == -1) return;
+
+    auto list = ui->disconnectedScientists->selectedItems();
+    std::vector<int> rows;
+    for(int i = 0; i < list.size(); i++)
+    {
+        QTableWidgetItem* item = list.at(i);
+        int row = item->row();
+        if(std::find(rows.begin(), rows.end(), row) != rows.end()) continue; // remove each ID only once to reduce sql queries
+        else rows.push_back(row);
+        QTableWidgetItem* id = ui->disconnectedScientists->item(row,0);
+        relationService.add(id->text().toInt(),selectedComputer);
+    }
+
+    displayConnectedScientists();
+    displayDisconnectedScientists();
+}
+
+void MainWindow::on_disconnectScientist_clicked()
+{
+    if(selectedComputer == -1) return;
+
+    auto list = ui->connectedScientists->selectedItems();
+    std::vector<int> rows;
+    for(int i = 0; i < list.size(); i++)
+    {
+        QTableWidgetItem* item = list.at(i);
+        int row = item->row();
+        if(std::find(rows.begin(), rows.end(), row) != rows.end()) continue; // remove each ID only once to reduce sql queries
+        else rows.push_back(row);
+        QTableWidgetItem* id = ui->connectedScientists->item(row,0);
+        relationService.remove(id->text().toInt(),selectedComputer);
+    }
+
+    displayConnectedScientists();
+    displayDisconnectedScientists();
 }

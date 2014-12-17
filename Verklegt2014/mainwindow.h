@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include "PersonService.h"
 #include "ComputerService.h"
+#include "RelationService.h"
 #include "Database.h"
 
 namespace Ui {
@@ -20,6 +21,7 @@ public:
 
     PersonService personService;
     ComputerService computerService;
+    RelationService relationService;
 
 private slots:
     void on_searchScientist_textChanged(const QString &arg1);
@@ -36,6 +38,16 @@ private slots:
 
     void on_scientistTable_clicked(const QModelIndex &index);
 
+    void on_connectToComputer_clicked();
+
+    void on_disconnectComputer_clicked();
+
+    void on_computerTable_clicked(const QModelIndex &index);
+
+    void on_connectScientist_clicked();
+
+    void on_disconnectScientist_clicked();
+
 private:
     Ui::MainWindow *ui;
     Database db;
@@ -44,4 +56,6 @@ private:
     void displayComputers();
     void displayConnectedComputers();
     void displayDisconnectedComputers();
+    void displayConnectedScientists();
+    void displayDisconnectedScientists();
 };

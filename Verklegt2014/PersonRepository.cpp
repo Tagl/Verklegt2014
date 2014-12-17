@@ -19,21 +19,21 @@ std::vector<Person> PersonRepository::getAllDisconnected(int cid)
     QSqlQuery query;
 
 
-    query.prepare("SELECT * FROM Persons p WHERE p.id NOT IN (SELECT p_id FROM Connections c WHERE c.c_id = :id);");
-    query.bindValue(":id", cid);
+    query.prepare("SELECT * FROM Persons WHERE NOT EXISTS (SELECT * FROM Connections WHERE p_id = id AND c_id = :cid)");
+    query.bindValue(":cid", cid);
     query.exec();
 
     while(query.next())
     {
         Person p = Person();
-        p.id = query.value("p.ID").toInt();
-        p.firstname = query.value("p.FirstName").toString().toStdString();
-        p.surname = query.value("p.SurName").toString().toStdString();
-        p.gender = query.value("p.Gender").toString() == "M" ? MALE : FEMALE;
-        p.dob = Date::fromString(query.value("p.DoB").toDate().toString("dd/MM/yyyy"));
-        bool temp = query.value("p.DoD").isNull();
-        p.dod = temp ? Date() : Date::fromString(query.value("p.DoD").toDate().toString("dd/MM/yyyy"));
-        p.description = query.value("p.Description").toString().toStdString();
+        p.id = query.value("ID").toInt();
+        p.firstname = query.value("FirstName").toString().toStdString();
+        p.surname = query.value("SurName").toString().toStdString();
+        p.gender = query.value("Gender").toString() == "M" ? MALE : FEMALE;
+        p.dob = Date::fromString(query.value("DoB").toDate().toString("dd/MM/yyyy"));
+        bool temp = query.value("DoD").isNull();
+        p.dod = temp ? Date() : Date::fromString(query.value("DoD").toDate().toString("dd/MM/yyyy"));
+        p.description = query.value("Description").toString().toStdString();
         peepz.push_back(p);
     }
 
@@ -54,14 +54,14 @@ std::vector<Person> PersonRepository::getAllConnected(int cid)
     while(query.next())
     {
         Person p = Person();
-        p.id = query.value("p.ID").toInt();
-        p.firstname = query.value("p.FirstName").toString().toStdString();
-        p.surname = query.value("p.SurName").toString().toStdString();
-        p.gender = query.value("p.Gender").toString() == "M" ? MALE : FEMALE;
-        p.dob = Date::fromString(query.value("p.DoB").toDate().toString("dd/MM/yyyy"));
-        bool temp = query.value("p.DoD").isNull();
-        p.dod = temp ? Date() : Date::fromString(query.value("p.DoD").toDate().toString("dd/MM/yyyy"));
-        p.description = query.value("p.Description").toString().toStdString();
+        p.id = query.value("ID").toInt();
+        p.firstname = query.value("FirstName").toString().toStdString();
+        p.surname = query.value("SurName").toString().toStdString();
+        p.gender = query.value("Gender").toString() == "M" ? MALE : FEMALE;
+        p.dob = Date::fromString(query.value("DoB").toDate().toString("dd/MM/yyyy"));
+        bool temp = query.value("DoD").isNull();
+        p.dod = temp ? Date() : Date::fromString(query.value("DoD").toDate().toString("dd/MM/yyyy"));
+        p.description = query.value("Description").toString().toStdString();
         peepz.push_back(p);
     }
 
